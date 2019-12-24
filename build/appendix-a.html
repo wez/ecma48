@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Appendix A: Editor Functions and Format Effectors - ECMA-48: Additional Control Functions for Character-Imaging I/O Devices</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded affix "><a href="00-foreword.html">Foreword</a></li><li class="expanded "><a href="01-general.html"><strong aria-hidden="true">1.</strong> General</a></li><li class="expanded "><a href="02-references.html"><strong aria-hidden="true">2.</strong> References</a></li><li class="expanded "><a href="03-terminology.html"><strong aria-hidden="true">3.</strong> Notation &amp; Terminology</a></li><li class="expanded "><a href="04-coding.html"><strong aria-hidden="true">4.</strong> Coded Representations</a></li><li class="expanded "><a href="05-device.html"><strong aria-hidden="true">5.</strong> Device Concepts</a></li><li class="expanded "><a href="06-modes.html"><strong aria-hidden="true">6.</strong> Modes</a></li><li class="expanded "><a href="07-control.html"><strong aria-hidden="true">7.</strong> Control Functions</a></li><li class="expanded "><a href="08-relations.html"><strong aria-hidden="true">8.</strong> Relations between Modes and Control Functions</a></li><li class="expanded "><a href="09-transform.html"><strong aria-hidden="true">9.</strong> Transformation between 7-bit and 8-bit</a></li><li class="spacer"></li><li class="expanded affix "><a href="appendix-a.html" class="active">Appendix A: Editor Functions and Format Effectors</a></li><li class="expanded affix "><a href="appendix-b.html">Appendix B: Coding Examples</a></li><li class="expanded affix "><a href="appendix-c.html">Appendix C: Text Composition Device Concepts</a></li><li class="expanded affix "><a href="appendix-d.html">Appendix D: Implementation-Dependent Features</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">ECMA-48: Additional Control Functions for Character-Imaging I/O Devices</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2><a class="header" href="#appendix-a-editor-functions-and-format-effectors" id="appendix-a-editor-functions-and-format-effectors">APPENDIX A: EDITOR FUNCTIONS AND FORMAT EFFECTORS</a></h2>
+<h3><a class="header" href="#a1-correspondence-between-editor-functions-and-format-effectors" id="a1-correspondence-between-editor-functions-and-format-effectors">A.1 Correspondence between editor functions and format effectors</a></h3>
+<p>Table 6 shows on the same line editor functions and format effectors with
+similar functions. The notation (s), (n) or (n;m) following an abbreviation
+indicates that the control function is represented by a control sequence with a
+selective parameter, one numeric parameter, or two numeric parameters.  An
+abbreviation without such a notation indicates that the control function is an
+element of the CO or C1 set. Format effectors from Standard ECMA-6 are also
+included. Where there is only one entry on a single line, there is no control
+function corresponding to the one shown.</p>
+<table><thead><tr><th>Editor Function</th><th>Format Effector</th></tr></thead><tbody>
+<tr><td>CBT (n)</td><td></td></tr>
+<tr><td>CHA (n)</td><td>CR, HPA (n)</td></tr>
+<tr><td>CHT (n)</td><td>HT</td></tr>
+<tr><td>CNL (n)</td><td>NEL, NL</td></tr>
+<tr><td>CPL (n)</td><td></td></tr>
+<tr><td>CTC (s)</td><td>HTS, TBC (s), VTS</td></tr>
+<tr><td>CUB (n)</td><td>BS</td></tr>
+<tr><td>CUD (n)</td><td>IND, LF, VPR (n)</td></tr>
+<tr><td>CUF (n)</td><td>HPR (n), SP</td></tr>
+<tr><td>CUP (n;m)</td><td>HVP (n;m)</td></tr>
+<tr><td>CUU (n)</td><td>RI</td></tr>
+<tr><td>CVT (n)</td><td>VT</td></tr>
+<tr><td>DCH (n)</td><td></td></tr>
+<tr><td>DL (n)</td><td></td></tr>
+<tr><td>EA (s)</td><td></td></tr>
+<tr><td>ECH (n)</td><td></td></tr>
+<tr><td>ED (s)</td><td></td></tr>
+<tr><td>EF (s)</td><td></td></tr>
+<tr><td>EL (s)</td><td></td></tr>
+<tr><td></td><td>FNT (n;m)</td></tr>
+<tr><td></td><td>GSM (n;m)</td></tr>
+<tr><td></td><td>GSS (n)</td></tr>
+<tr><td></td><td>HTJ</td></tr>
+<tr><td>ICH (n)</td><td></td></tr>
+<tr><td>IL (n)</td><td></td></tr>
+<tr><td></td><td>JFY (s)</td></tr>
+<tr><td>NP (n)</td><td>FF</td></tr>
+<tr><td></td><td>PLD</td></tr>
+<tr><td></td><td>PLU</td></tr>
+<tr><td>PP (n)</td><td></td></tr>
+<tr><td></td><td>QUAD (s)</td></tr>
+<tr><td></td><td>SGR (s)</td></tr>
+<tr><td></td><td>SPI (n;m)</td></tr>
+<tr><td>SD (n)</td><td></td></tr>
+<tr><td>SL (n)</td><td></td></tr>
+<tr><td>SR (n)</td><td></td></tr>
+<tr><td></td><td>SSU (s)</td></tr>
+<tr><td>SU (n)</td><td></td></tr>
+<tr><td></td><td>TSS (n)</td></tr>
+<tr><td></td><td>VPA (n)</td></tr>
+</tbody></table>
+<p>TABLE 6: CORRESPONDENCE BETWEEN EDITOR FUNCTIONS AND FORMAT EFFECTORS</p>
+<h3><a class="header" href="#a2-differences-between-editor-functions-and-format-effectors" id="a2-differences-between-editor-functions-and-format-effectors">A.2 Differences between editor functions and format effectors</a></h3>
+<p>The contrast between editor functions and format effectors, together with their
+interaction with certain modes, is illustrated by the following example of the
+use of the control functions CURSOR NEXT LINE (CNL) and NEXT LINE (NEL).</p>
+<p>In the example it is assumed that the string of capital letters:</p>
+<pre><code>A B C D E F
+</code></pre>
+<p>has been entered or received, and that the active position has been moved back
+to the letter <code>D</code>, e.g. by-means of CURSOR BACKWARDS (CUB). Starting from this
+situation, the following cases are considered.</p>
+<p><strong>Case 1</strong>: A CURSOR NEXT LINE (CNL) is received. In this case, the active
+position is moved to the beginning of the next line without affecting the
+previously received data.</p>
+<p><strong>Case 2</strong>: The FORMAT EFFECTOR ACTION MODE being set to EXECUTE, a NEXT LINE
+(NEL) is received. This has the same effect as in case 1).</p>
+<p><strong>Case 3</strong>: The FORMAT EFFECTOR ACTION MODE being set to STORE and the
+INSERTION REPLACEMENT MODE to REPLACE, a NEXT LINE (NEL) is received. In this
+case, the letter D is replaced by NEL.  If the data is subsequently forwarded
+to another device operating with the FORMAT EFFECTOR ACTION MODE being set to
+EXECUTE, the effect is:</p>
+<pre><code>A B C
+E F
+</code></pre>
+<p><strong>Case 4</strong>: The FORMAT EFFECTOR ACTION MODE being set to STORE and the
+INSERTION REPLACEMENT MODE to INSERT, a NEXT LINE (NEL) is received. In this
+case, the NEL is inserted between the letters C and D. If the data is
+subsequently forwarded to another device operating with the FORMAT EFFECTOR
+ACTION MODE being set to EXECUTE, the effect is:</p>
+<pre><code>A B C
+D E F
+</code></pre>
+<p>Format effectors which have been received while the FORMAT
+EFFECTOR ACTION MODE is set to STORE can be operated upon with
+editing functions.</p>
+<p>For example, the NEL which has been inserted between A B C and
+D E F in case 4) can be deleted using DELETE CHARACTER
+(DCH), resulting in the initial situation being restored.</p>
+<h3><a class="header" href="#a3-composite-graphic-characters" id="a3-composite-graphic-characters">A.3 Composite graphic characters</a></h3>
+<p>Because the format effectors can be stored in a receiving device, as opposed to
+the editor functions which are immediately performed, format effectors rather
+than editor functions should be used for the construction of composite
+graphics.</p>
+<p>For example, if the symbol <tt>≠</tt> is to be composed using <code>=</code> (EQUALS SIGN) and <code>/</code>
+(SOLIDUS), the sequence:</p>
+<pre><code>= CUB /
+</code></pre>
+<p>does not produce the desired effect if received by a device which has no
+overstrike capability. Such a device may, however, process the sequence:</p>
+<pre><code>= BS /
+</code></pre>
+<p>in such a way that it is preserved and can be forwarded to a device which can
+indeed produce the intended composite symbol.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="09-transform.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="appendix-b.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="09-transform.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="appendix-b.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

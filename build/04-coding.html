@@ -1,0 +1,584 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Coded Representations - ECMA-48: Additional Control Functions for Character-Imaging I/O Devices</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded affix "><a href="00-foreword.html">Foreword</a></li><li class="expanded "><a href="01-general.html"><strong aria-hidden="true">1.</strong> General</a></li><li class="expanded "><a href="02-references.html"><strong aria-hidden="true">2.</strong> References</a></li><li class="expanded "><a href="03-terminology.html"><strong aria-hidden="true">3.</strong> Notation &amp; Terminology</a></li><li class="expanded "><a href="04-coding.html" class="active"><strong aria-hidden="true">4.</strong> Coded Representations</a></li><li class="expanded "><a href="05-device.html"><strong aria-hidden="true">5.</strong> Device Concepts</a></li><li class="expanded "><a href="06-modes.html"><strong aria-hidden="true">6.</strong> Modes</a></li><li class="expanded "><a href="07-control.html"><strong aria-hidden="true">7.</strong> Control Functions</a></li><li class="expanded "><a href="08-relations.html"><strong aria-hidden="true">8.</strong> Relations between Modes and Control Functions</a></li><li class="expanded "><a href="09-transform.html"><strong aria-hidden="true">9.</strong> Transformation between 7-bit and 8-bit</a></li><li class="spacer"></li><li class="expanded affix "><a href="appendix-a.html">Appendix A: Editor Functions and Format Effectors</a></li><li class="expanded affix "><a href="appendix-b.html">Appendix B: Coding Examples</a></li><li class="expanded affix "><a href="appendix-c.html">Appendix C: Text Composition Device Concepts</a></li><li class="expanded affix "><a href="appendix-d.html">Appendix D: Implementation-Dependent Features</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">ECMA-48: Additional Control Functions for Character-Imaging I/O Devices</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2><a class="header" href="#4-coded-representations" id="4-coded-representations">4. CODED REPRESENTATIONS</a></h2>
+<h3><a class="header" href="#41-general" id="41-general">4.1. General</a></h3>
+<p>The set of additional control functions in this Standard consists of more than
+32 control functions which can be coded in a C1 set.</p>
+<p>Each control function belongs to one of the following cate-
+gories, depending on the method of representation:</p>
+<ul>
+<li>Control functions which are elements of the C1 set;</li>
+<li>Control functions represented by control sequences;</li>
+<li>Control functions represented by ESC Fs sequences.</li>
+</ul>
+<p>This Standard also defines a method of representations of control functions by
+means of control strings (see 4.6).</p>
+<h4><a class="header" href="#411-control-functions-which-are-elements-of-the-c1-set" id="411-control-functions-which-are-elements-of-the-c1-set">4.1.1. Control functions which are elements of the C1 set</a></h4>
+<p>As in ECMA-35 such a control function is represented:</p>
+<ul>
+<li>in a 7-bit code by a 2-character escape sequence of the form ESC Fe, where Fe
+is a bit combination of column 4 or 53</li>
+<li>in an 8-bit code by a bit combination of column 08 or 09).</li>
+</ul>
+<p>This method of representation permits coding of up to 32 control functions.
+These bit combinations are defined in 4.2</p>
+<h4><a class="header" href="#412-control-functions-represented-by-control-sequences" id="412-control-functions-represented-by-control-sequences">4.1.2. Control functions represented by control sequences</a></h4>
+<p>A control sequence consists of the coded representation of CONTROL SEQUENCE
+INTRODUCER (CSI) followed by one or more bit combinations which identify the
+control function and, if applicable, represent the parameters of the control
+function. The control function CSI itself is an element of the C1 set.</p>
+<p>The format of a control sequence is:</p>
+<pre><code>CSI P1 ... Pn I1 ... Im F
+</code></pre>
+<p>where:</p>
+<ul>
+<li>CSI is represented by ESC 5/11 in a 7-bit code and by 09/11 in an 8-bit code
+(see 4.2).</li>
+<li><code>P1</code> ... <code>Pn</code> are bit combinations of column 3 representing the parameter
+values; these bit combinations shall be omitted if the control function has
+no parameter, and may be omitted if the default parameter value is to apply.</li>
+<li><code>I1</code> ... <code>Im</code> are bit combinations of column 2 which, together with the final
+bit combination F, identify the control function; these bit combinations
+shall be omitted if the control function is identified by the final bit
+combination F alone;</li>
+</ul>
+<p>NOTE 1: The number of intermediate bit combinations is not limited by this
+Standard; in practice, at most one intermediate will be sufficient since over
+one thousand control functions may be identified using not more than one
+intermediate.</p>
+<ul>
+<li><code>F</code> is a bit combination of column 4, 5, 6 or 7 (except 7/15) which
+terminates the control sequence and, together with the intermediate bit
+combinations I1 ... Im, if present, identifies the control function (see 9).</li>
+</ul>
+<p>The occurrence of any bit combinations which do not conform to the above format
+is an error condition for which recovery is not specified by this Standard.</p>
+<p>The final bit combinations (either used alone or together with intermediates)
+are classified in two categories:</p>
+<ul>
+<li>The control functions identified by final bit combinations of columns 4, 5
+and 6 are either standardized or reserved for future standardization;</li>
+<li>the control functions identified by final bit combinations of column 7
+(except 7/15) are not standardized and are available for private or
+experimental use.</li>
+</ul>
+<p>There are two types of parameters; numeric and selective (see 4.4). A numeric
+parameter represents a number; a selective parameter merely represents a
+character string, the meaning of which depends on the control function.</p>
+<p>The final bit combinations of columns 4, 5 and 6 and the intermediate bit
+combinations are defined in 4.3.</p>
+<h4><a class="header" href="#413-control-functions-represented-by-esc-fs-sequences" id="413-control-functions-represented-by-esc-fs-sequences">4.1.3. Control functions represented by ESC Fs sequences</a></h4>
+<p>As in ECMA-35 the coded representations of these control functions in 7-bit and
+8-bit codes are 2-character escape sequences of the form ESC Fs, where Fs is a
+bit combination from 6/0 to 7/14 (see 4.5). These control functions are not
+part of the C1 set.</p>
+<h3><a class="header" href="#42-elements-of-the-c1-set" id="42-elements-of-the-c1-set">4.2. Elements of the C1 Set</a></h3>
+<p>The following 25 control functions are the elements of the C1 set:</p>
+<table><thead><tr><th>Abbreviation</th><th>Name</th></tr></thead><tbody>
+<tr><td>APC</td><td>APPLICATION PROGRAM COMMAND</td></tr>
+<tr><td>CCH</td><td>CANCEL CHARACTER</td></tr>
+<tr><td>CSI</td><td>CONTROL SEQUENCE INTRODUCER</td></tr>
+<tr><td>DES</td><td>DEVICE CONTROL STRING</td></tr>
+<tr><td>EPA</td><td>END OF PROTECTED AREA</td></tr>
+<tr><td>ESA</td><td>END OF SELECTED AREA</td></tr>
+<tr><td>HTJ</td><td>HORIZONTAL TABULATION WITH JUSTIFICATION</td></tr>
+<tr><td>HTS</td><td>HORIZONTAL TABULATION SET</td></tr>
+<tr><td>IND</td><td>INDEX</td></tr>
+<tr><td>MW</td><td>MESSAGE WAITING</td></tr>
+<tr><td>NEL</td><td>NEXT LINE</td></tr>
+<tr><td>OSG</td><td>OPERATING SYSTEM COMMAND</td></tr>
+<tr><td>PLD</td><td>PARTIAL LINE DOWN</td></tr>
+<tr><td>PLU</td><td>PARTIAL LINE UP</td></tr>
+<tr><td>PM</td><td>PRIVACY MESSAGE</td></tr>
+<tr><td>PU1</td><td>PRIVATE USE 1</td></tr>
+<tr><td>PU2</td><td>PRIVATE USE 2</td></tr>
+<tr><td>RI</td><td>REVERSE INDEX</td></tr>
+<tr><td>SPA</td><td>START OF PROTECTED AREA</td></tr>
+<tr><td>SS2</td><td>SINGLE SHIFT 2</td></tr>
+<tr><td>SS3</td><td>SINGLE SHIFT 3</td></tr>
+<tr><td>SSA</td><td>START OF SELECTED AREA</td></tr>
+<tr><td>ST</td><td>STRING TERMINATOR</td></tr>
+<tr><td>STS</td><td>SET TRANSMIT STATE</td></tr>
+<tr><td>VTS</td><td>VERTICAL TABULATION SET</td></tr>
+</tbody></table>
+<p>Their coded representations are defined by Table 1.</p>
+<p>The definitions of the control functions are specified in 7.2.</p>
+<p>If a control function is represented by a 2-character escape sequence (in a
+7-bit code), the table specifies the bit combination of the final character by
+taking A=4 and B=5.</p>
+<p>If a control function is represented by a single 8-bit combination the table
+specifies this bit combination by taking A=08 and B=09.</p>
+<p>The open positions in the table are reserved for future standardization. They
+are not to be used for private or experimental codes.</p>
+<table><thead><tr><th>Row No</th><th>Column A</th><th>Column B</th></tr></thead><tbody>
+<tr><td>0</td><td></td><td>DCS</td></tr>
+<tr><td>1</td><td></td><td>PU1</td></tr>
+<tr><td>2</td><td></td><td>PU2</td></tr>
+<tr><td>3</td><td></td><td>STS</td></tr>
+<tr><td>4</td><td>IND</td><td>CCH</td></tr>
+<tr><td>5</td><td>NEL</td><td>MW</td></tr>
+<tr><td>6</td><td>SSA</td><td>SPA</td></tr>
+<tr><td>7</td><td>ESA</td><td>EPA</td></tr>
+<tr><td>8</td><td>HTS</td><td></td></tr>
+<tr><td>9</td><td>HTJ</td><td></td></tr>
+<tr><td>10</td><td>VTS</td><td></td></tr>
+<tr><td>11</td><td>PLD</td><td>CSI</td></tr>
+<tr><td>12</td><td>PLU</td><td>ST</td></tr>
+<tr><td>13</td><td>RI</td><td>OSC</td></tr>
+<tr><td>14</td><td>SS2</td><td>PM</td></tr>
+<tr><td>15</td><td>SS3</td><td>APC</td></tr>
+</tbody></table>
+<p>Table 1: ALLOCATION OF BIT COMBINATIONS TO THE CONTROL FUNCTIONS OF THE C1 SET.</p>
+<p>The 3-character escape sequence designating this C1 set is ESC 2/2 F.</p>
+<p>NOTE 2: The final character F of the designating 3-character escape sequence is
+not known at this moment; it is subject to registration procedures in
+accordance with International Standard ISO 2375.</p>
+<h3><a class="header" href="#43-control-sequences" id="43-control-sequences">4.3. Control Sequences</a></h3>
+<p>The 51 control functions listed below are represented by control sequences.</p>
+<p>The definitions of the control functions are specified in 7.2. The final bit
+combinations of the control sequences are defined by Tables 2 and 3.</p>
+<h4><a class="header" href="#431-control-functions-with-numeric-parameters" id="431-control-functions-with-numeric-parameters">4.3.1. Control functions with numeric parameters</a></h4>
+<table><thead><tr><th>Abbreviation</th><th>Name</th><th>Table</th></tr></thead><tbody>
+<tr><td>CBT</td><td>CURSOR BACKWARD TABULATION</td><td>2</td></tr>
+<tr><td>CHA</td><td>CURSOR HORIZONTAL ABSOLUTE</td><td>2</td></tr>
+<tr><td>CHT</td><td>CURSOR HORIZONTAL TABULATION</td><td>2</td></tr>
+<tr><td>CNL</td><td>CURSOR NEXT LINE</td><td>2</td></tr>
+<tr><td>CPL</td><td>CURSOR PRECEDING LINE</td><td>2</td></tr>
+<tr><td>CPR</td><td>CURSOR POSITION REPORT</td><td>2</td></tr>
+<tr><td>CUB</td><td>CURSOR BACKWARD</td><td>2</td></tr>
+<tr><td>CUD</td><td>CURSOR DOWN</td><td>2</td></tr>
+<tr><td>CUF</td><td>CURSOR FORWARD</td><td>2</td></tr>
+<tr><td>CUP</td><td>CURSOR POSITION</td><td>2</td></tr>
+<tr><td>CUU</td><td>CURSOR UP</td><td>2</td></tr>
+<tr><td>CVT</td><td>CURSOR VERTICAL TABULATION</td><td>2</td></tr>
+<tr><td>DA</td><td>DEVICE ATTRIBUTES</td><td>2</td></tr>
+<tr><td>DCH</td><td>DELETE CHARACTER</td><td>2</td></tr>
+<tr><td>DL</td><td>DELETE LINE</td><td>2</td></tr>
+<tr><td>ECH</td><td>ERASE CHARACTER</td><td>2</td></tr>
+<tr><td>FNT</td><td>FONT SELECTION</td><td>3</td></tr>
+<tr><td>GSM</td><td>GRAPHIC SIZE MODIFICATION</td><td>3</td></tr>
+<tr><td>GSS</td><td>GRAPHIC SIZE SELECTION</td><td>3</td></tr>
+<tr><td>HPA</td><td>HORIZONTAL POSITION ABSOLUTE</td><td>2</td></tr>
+<tr><td>HPR</td><td>HORIZONTAL POSITION RELATIVE</td><td>2</td></tr>
+<tr><td>HVP</td><td>HORIZONTAL AND VERTICAL POSITION</td><td>2</td></tr>
+<tr><td>ICH</td><td>INSERT CHARACTER</td><td>2</td></tr>
+<tr><td>IL</td><td>INSERT LINE</td><td>2</td></tr>
+<tr><td>NP</td><td>NEXT PAGE</td><td>2</td></tr>
+<tr><td>PP</td><td>PRECEDING PAGE</td><td>2</td></tr>
+<tr><td>REP</td><td>REPEAT</td><td>2</td></tr>
+<tr><td>SD</td><td>SCROLL DOWN</td><td>2</td></tr>
+<tr><td>SL</td><td>SCROLL LEFT</td><td>3</td></tr>
+<tr><td>SPI</td><td>SPACING INCREMENT</td><td>3</td></tr>
+<tr><td>SR</td><td>SCROLL RIGHT</td><td>3</td></tr>
+<tr><td>SU</td><td>SCROLL UP</td><td>2</td></tr>
+<tr><td>TSS</td><td>THIN SPACE SPECIFICATION</td><td>3</td></tr>
+<tr><td>VPA</td><td>VERTICAL POSITION ABSOLUTE</td><td>2</td></tr>
+<tr><td>VPR</td><td>VERTICAL POSITION RELATIVE</td><td>2</td></tr>
+</tbody></table>
+<h4><a class="header" href="#432-control-functions-with-selective-parameters" id="432-control-functions-with-selective-parameters">4.3.2. Control functions with selective parameters</a></h4>
+<table><thead><tr><th>Abbreviation</th><th>Name</th><th>Table</th></tr></thead><tbody>
+<tr><td>CTC</td><td>CURSOR TABULATION CONTROL</td><td>2</td></tr>
+<tr><td>DAQ</td><td>DEFINE AREA QUALIFICATION</td><td>2</td></tr>
+<tr><td>DSR</td><td>DEVICE STATUS REPORT</td><td>2</td></tr>
+<tr><td>EA</td><td>ERASE IN AREA</td><td>2</td></tr>
+<tr><td>ED</td><td>ERASE IN DISPLAY</td><td>2</td></tr>
+<tr><td>EF</td><td>ERASE IN FIELD</td><td>2</td></tr>
+<tr><td>EL</td><td>ERASE IN LINE</td><td>2</td></tr>
+<tr><td>JFY</td><td>JUSTIFY</td><td>3</td></tr>
+<tr><td>MC</td><td>MEDIA COPY</td><td>2</td></tr>
+<tr><td>QUAD</td><td>QUAD</td><td>3</td></tr>
+<tr><td>RM</td><td>RESET MODE</td><td>2</td></tr>
+<tr><td>SEE</td><td>SELECT EDITING EXTENT</td><td>2</td></tr>
+<tr><td>SGR</td><td>SELECT GRAPHIC RENDITION</td><td>2</td></tr>
+<tr><td>SM</td><td>SET MODE</td><td>2</td></tr>
+<tr><td>SSU</td><td>SELECT SIZE UNIT</td><td>3</td></tr>
+<tr><td>TBC</td><td>TABULATION CLEAR</td><td>2</td></tr>
+</tbody></table>
+<p>Table 2 specifies the final bit combinations of the control sequences without
+intermediates.</p>
+<p>Table 3 specifies the final bit combinations of the control sequences which
+contain bit combination 2/0 as the single intermediate.</p>
+<p>The open positions in the tables, as well as all final bit combinations of
+columns 4, 5 and 6 which are used with other intermediates than one 2/0 only,
+are reserved for future standardization. All final bit combinations of column 7
+except 7/15 (with or without intermediates) are available as final bit
+combinations for private or experimental use.</p>
+<table><thead><tr><th>Row No.</th><th>Column #4</th><th>Column #5</th><th>Column #6</th></tr></thead><tbody>
+<tr><td>0</td><td>ICH</td><td>DCH</td><td>HPA</td></tr>
+<tr><td>1</td><td>CUU</td><td>SEE</td><td>HPR</td></tr>
+<tr><td>2</td><td>CUD</td><td>CPR</td><td>REP</td></tr>
+<tr><td>3</td><td>CUF</td><td>SU</td><td>DA</td></tr>
+<tr><td>4</td><td>CUB</td><td>SD</td><td>VPA</td></tr>
+<tr><td>5</td><td>CNL</td><td>NP</td><td>VPR</td></tr>
+<tr><td>6</td><td>CPL</td><td>PP</td><td>HVP</td></tr>
+<tr><td>7</td><td>CHA</td><td>CTC</td><td>TBC</td></tr>
+<tr><td>8</td><td>CUP</td><td>ECH</td><td>SM</td></tr>
+<tr><td>9</td><td>CHT</td><td>CVT</td><td>MC</td></tr>
+<tr><td>10</td><td>ED</td><td>CBT</td><td></td></tr>
+<tr><td>11</td><td>EL</td><td></td><td></td></tr>
+<tr><td>12</td><td>IL</td><td></td><td>RM</td></tr>
+<tr><td>13</td><td>DL</td><td></td><td>SGR</td></tr>
+<tr><td>14</td><td>EF</td><td></td><td>DSR</td></tr>
+<tr><td>15</td><td>EA</td><td></td><td>DAQ</td></tr>
+</tbody></table>
+<p>Table 2: ALLOCATION OF FINAL BIT COMBINATIONS TO CONTROL SEQUENCES WITHOUT INTERMEDIATES.</p>
+<table><thead><tr><th>Row No.</th><th>Column #4</th><th>Column #5</th><th>Column #6</th></tr></thead><tbody>
+<tr><td>0</td><td>SL</td><td></td><td></td></tr>
+<tr><td>1</td><td>SR</td><td></td><td></td></tr>
+<tr><td>2</td><td>GSM</td><td></td><td></td></tr>
+<tr><td>3</td><td>GSS</td><td></td><td></td></tr>
+<tr><td>4</td><td>FNT</td><td></td><td></td></tr>
+<tr><td>5</td><td>TSS</td><td></td><td></td></tr>
+<tr><td>6</td><td>JFY</td><td></td><td></td></tr>
+<tr><td>7</td><td>SPI</td><td></td><td></td></tr>
+<tr><td>8</td><td>QUAD</td><td></td><td></td></tr>
+<tr><td>9</td><td>SSU</td><td></td><td></td></tr>
+<tr><td>10</td><td></td><td></td><td></td></tr>
+<tr><td>11</td><td></td><td></td><td></td></tr>
+<tr><td>12</td><td></td><td></td><td></td></tr>
+<tr><td>13</td><td></td><td></td><td></td></tr>
+<tr><td>14</td><td></td><td></td><td></td></tr>
+<tr><td>15</td><td></td><td></td><td></td></tr>
+</tbody></table>
+<p>Table 3: ALLOCATION OF FINAL BIT COMBINATIONS TO CONTROL SEQUENCES WITH 2/0 AS A SINGLE INTERMEDIATE.</p>
+<h3><a class="header" href="#44-parameter-representations" id="44-parameter-representations">4.4. Parameter Representations</a></h3>
+<p>A control sequence may contain a string of bit combinations
+<code>P1 ... Pn</code> representing one or more parameters to complete the
+specification of the control function.</p>
+<p>The string of bit combinations <code>P1 ... Pn</code> contained in a control sequence is
+called the parameter string. It consists of bit combinations of column 3 and is
+interpreted as follows:</p>
+<ul>
+<li>If the first bit combination of the parameter string is in the range 3/0 to
+3/11, the parameter string is interpreted according to the format described
+below.</li>
+<li>If the first bit combination of the parameter string is in the range 3/12 to
+3/15, the parameter string is available for private or experimental use. Its
+format and meaning are not specified in this Standard.</li>
+</ul>
+<h4><a class="header" href="#441-parameter-string-format" id="441-parameter-string-format">4.4.1. Parameter string format</a></h4>
+<ul>
+<li>A parameter string consists of one or more parameter substrings, each of
+which represents a parameter value.</li>
+<li>Each parameter sub-string consists of one or more bit combinations from 3/0
+to 3/9, representing the decimal digits ZERO to NINE.</li>
+<li>Parameter sub-strings are separated by one bit combination 3/11.</li>
+<li>Bit combination 3/10 is reserved for future standardization as an additional
+parameter separator.</li>
+<li>Bit combinations 3/12 to 3/15 shall not be used.</li>
+<li>In each parameter sub-string, leading bit combinations 3/0 are not
+significant and may be omitted.</li>
+<li>If the parameter string starts with the bit combination 3/11, an empty
+parameter sub-string is assumed preceding <code>|</code> the separator; if the parameter
+string terminates with the bit combination 3/11, an empty parameter
+sub-string is assumed following the separator; if the parameter string
+contains successive bit combinations 3/11, empty parameter sub-strings are
+assumed between the separators.</li>
+<li>An empty parameter sub-string or a parameter sub-string which consists of bit
+combinations 3/0 only represents a default value which depends on the control
+function.</li>
+</ul>
+<h4><a class="header" href="#442-types-of-parameters" id="442-types-of-parameters">4.4.2. Types of parameters</a></h4>
+<p>There are two types of parameters: numeric parameters and selective parameters.</p>
+<h5><a class="header" href="#4421-numeric-parameters" id="4421-numeric-parameters">4.4.2.1. Numeric parameters</a></h5>
+<p>In a control sequence representing a control function with numeric parameters,
+each parameter sub-string corresponds to one parameter.</p>
+<p>The number of parameters is fixed and depends on the control function. If the
+control function has more than one numeric parameter, and some (but not all)
+parameter sub-strings are omitted, the separators (bit combination 3/11) must
+still be present. Only if all parameter sub-strings are omitted, are the
+separators not required.</p>
+<p>Each numeric parameter sub-string which contains at least one bit combination
+from 3/1 to 3/9 represents a number in decimal notation.</p>
+<h5><a class="header" href="#4422-selective-parameters" id="4422-selective-parameters">4.4.2.2. Selective parameters</a></h5>
+<p>In a control sequence representing a control function with a selective
+parameter, each parameter sub-string represents one value of the selective
+parameter. These values, whilst expressed by digits, are not quantitative. Each
+corresponds to one of the actions the control function can perform. Neither the
+maximum number of values nor the order in which the corresponding actions are
+performed are prescribed by this Standard. The effect of a sequence of values
+corresponding to conflicting actions depends on implementation.</p>
+<p>A particular parameter value may have the same meaning as a combination of two
+or more separate values.</p>
+<h3><a class="header" href="#45-esc-fs-sequences" id="45-esc-fs-sequences">4.5. ESC Fs Sequences</a></h3>
+<p>The following four control functions are represented by
+ESC Fs sequences:</p>
+<table><thead><tr><th>Abbreviation</th><th>Name</th></tr></thead><tbody>
+<tr><td>DMI</td><td>DISABLE MANUAL INPUT</td></tr>
+<tr><td>EMI</td><td>ENABLE MANUAL INPUT</td></tr>
+<tr><td>INT</td><td>INTERRUPT</td></tr>
+<tr><td>RIS</td><td>RESET TO INITIAL STATE</td></tr>
+</tbody></table>
+<p>The definitions of these control functions are specified in 7.2.</p>
+<p>The coded representations are defined by Table 4 which specifies the final bit
+combinations of the 2-character escape sequences representing these control
+functions.</p>
+<p>The open positions in the table are reserved for standardion of other control
+functions.</p>
+<table><thead><tr><th>Row #</th><th>Column #6</th><th>Column #7</th></tr></thead><tbody>
+<tr><td>0</td><td>DMI</td><td></td></tr>
+<tr><td>1</td><td>INT</td><td></td></tr>
+<tr><td>2</td><td>EMI</td><td></td></tr>
+<tr><td>3</td><td>RIS</td><td></td></tr>
+<tr><td>4</td><td></td><td></td></tr>
+<tr><td>5</td><td></td><td></td></tr>
+<tr><td>6</td><td></td><td></td></tr>
+<tr><td>7</td><td></td><td></td></tr>
+<tr><td>8</td><td></td><td></td></tr>
+<tr><td>9</td><td></td><td></td></tr>
+<tr><td>10</td><td></td><td></td></tr>
+<tr><td>11</td><td></td><td></td></tr>
+<tr><td>12</td><td></td><td></td></tr>
+<tr><td>13</td><td></td><td></td></tr>
+<tr><td>14</td><td></td><td></td></tr>
+<tr><td>15</td><td></td><td></td></tr>
+</tbody></table>
+<p>Table 4: ALLOCATION OF FINAL BIT COMBINATIONS TO ESC Fs SEQUENCES.</p>
+<h3><a class="header" href="#46-control-strings" id="46-control-strings">4.6. Control Strings</a></h3>
+<p>A control string is a delimited string of characters which may occur in the
+data stream as a logical entity for control purposes. A control string consists
+of an opening delimiter, followed by a string of graphic characters and SPACEs
+(bit combinations 2/0 to 7/14 inclusive) and terminated by STRING TERMINATOR
+(ST). The occurrence of other bit combinations within a control string is an
+error condition for which recovery is not specified by this Standard (see 9).</p>
+<p>The opening delimiter indicates the class of the component of the system which
+is the sender or recipient of the control string. The interpretation of the
+contents of the control string is not specified by this Standard, but instead
+requires prior agreement between the sender and the recipient of the data.</p>
+<p>The classes of system components which can be specified by the appropriate
+opening delimiter are the device, the operating system control program, the
+privacy discipline, and the application program. The corresponding opening
+delimiters are:</p>
+<ul>
+<li>DEVICE CONTROL STRING (DCS)</li>
+<li>OPERATING SYSTEM COMMAND (OSC)</li>
+<li>PRIVACY MESSAGE (PM)</li>
+<li>APPLICATION PROGRAM COMMAND (APC)</li>
+</ul>
+<p>Examples of applications of device control strings are:</p>
+<ul>
+<li>program loading</li>
+<li>configuration control</li>
+<li>mode control</li>
+<li>diagnostics</li>
+</ul>
+<p>An example of the use of application program command string is the interjection
+of application program commands in a data stream or file being processed by the
+application program as data.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="03-terminology.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="05-device.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="03-terminology.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="05-device.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

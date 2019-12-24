@@ -1,0 +1,452 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Modes - ECMA-48: Additional Control Functions for Character-Imaging I/O Devices</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded affix "><a href="00-foreword.html">Foreword</a></li><li class="expanded "><a href="01-general.html"><strong aria-hidden="true">1.</strong> General</a></li><li class="expanded "><a href="02-references.html"><strong aria-hidden="true">2.</strong> References</a></li><li class="expanded "><a href="03-terminology.html"><strong aria-hidden="true">3.</strong> Notation &amp; Terminology</a></li><li class="expanded "><a href="04-coding.html"><strong aria-hidden="true">4.</strong> Coded Representations</a></li><li class="expanded "><a href="05-device.html"><strong aria-hidden="true">5.</strong> Device Concepts</a></li><li class="expanded "><a href="06-modes.html" class="active"><strong aria-hidden="true">6.</strong> Modes</a></li><li class="expanded "><a href="07-control.html"><strong aria-hidden="true">7.</strong> Control Functions</a></li><li class="expanded "><a href="08-relations.html"><strong aria-hidden="true">8.</strong> Relations between Modes and Control Functions</a></li><li class="expanded "><a href="09-transform.html"><strong aria-hidden="true">9.</strong> Transformation between 7-bit and 8-bit</a></li><li class="spacer"></li><li class="expanded affix "><a href="appendix-a.html">Appendix A: Editor Functions and Format Effectors</a></li><li class="expanded affix "><a href="appendix-b.html">Appendix B: Coding Examples</a></li><li class="expanded affix "><a href="appendix-c.html">Appendix C: Text Composition Device Concepts</a></li><li class="expanded affix "><a href="appendix-d.html">Appendix D: Implementation-Dependent Features</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">ECMA-48: Additional Control Functions for Character-Imaging I/O Devices</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2><a class="header" href="#6-modes" id="6-modes">6. MODES</a></h2>
+<h3><a class="header" href="#61-the-concept-of-modes" id="61-the-concept-of-modes">6.1. The Concept of Modes</a></h3>
+<p>This Standard is intended to be applicable to a very large range of devices.
+Within that broad range it is recognized that variations exist. Some of these
+variations have been formalized in this Standard in the form of modes. They
+deal with the way in which a device transmits, receives, processes, or images
+data. Each mode is defined as having two states. The initial state of each mode
+is defined by the implementation.</p>
+<p>The modes may be established explicitly within the data stream or by agreement
+between sender and recipient. In an implementation, some or all of the modes
+may have a fixed state incapable of being altered.</p>
+<h3><a class="header" href="#62-definition-of-modes" id="62-definition-of-modes">6.2. Definition of Modes</a></h3>
+<p>The modes listed below are defined in this Standard. They are set and reset by
+the control functions SET MODE (SM) and RESET MODE (RM). The parameter of SM or
+RM specifies the mode which is affected. In each of the mode definitions below,
+the first state is caused by RM, the second one by SM.</p>
+<h4><a class="header" href="#621-control-representation-mode" id="621-control-representation-mode">6.2.1. CONTROL REPRESENTATION MODE</a></h4>
+<p>CONTROL:</p>
+<p>All control functions are performed as defined, subject to the FORMAT EFFECTOR
+ACTION MODE in so far as format effectors are concerned, see 6.3.2. In addition
+to being performed some control functions may have a graphic representation.</p>
+<p>GRAPHIC:</p>
+<p>All control functions, except RESET MODE (RM), are treated as graphics.</p>
+<h4><a class="header" href="#622-editing-boundary-mode" id="622-editing-boundary-mode">6.2.2. EDITING BOUNDARY MODE</a></h4>
+<p>DISPLAY:</p>
+<p>The effects of the editing control functions are limited to the displayed
+portion of a multiple-page buffer.</p>
+<p>ALL:</p>
+<p>The editing control functions may affect character positions outside the
+displayed portion of a multiple-page buffer.</p>
+<h4><a class="header" href="#623-erasure-mode" id="623-erasure-mode">6.2.3. ERASURE MODE</a></h4>
+<p>PROTECT:</p>
+<p>Only unprotected data are affected by an erasure control function.</p>
+<p>ALL:</p>
+<p>Protected as well as unprotected data are affected by an erasure control
+function.</p>
+<h4><a class="header" href="#624-format-effector-action-mode" id="624-format-effector-action-mode">6.2.4. FORMAT EFFECTOR ACTION MODE</a></h4>
+<p>EXECUTE:</p>
+<p>A format effector causes the specified action to be performed immediately.
+Implementations may store format effectors in a buffer in addition to
+performing them.</p>
+<p>STORE:</p>
+<p>A format effector is treated as a graphic.</p>
+<p>This mode is significant only if the CONTROL REPRESENTATION MODE is set to
+CONTROL.</p>
+<h4><a class="header" href="#625-format-effector-transfer-mode" id="625-format-effector-transfer-mode">6.2.5. FORMAT EFFECTOR TRANSFER MODE</a></h4>
+<p>INSERT:</p>
+<p>Format effectors are inserted in a transmitted data stream
+or in any data transferred to any auxiliary input/output
+device:</p>
+<ul>
+<li>the format effectors CARRIAGE RETURN (CR) and LINE FEED (LF), or NEXT LINE
+(NEL), are inserted in the data stream to separate successive lines;</li>
+<li>other format effectors may be inserted as appropriate, e.g. HORIZONTAL
+TABULATION (HT) to represent a string of erased character positions preceding
+a tabulation stop.</li>
+</ul>
+<p>EXCLUDE:</p>
+<p>No format effectors other than those received while the FORMAT EFFECTOR ACTION
+MODE is set to STORE are included in a transmitted data stream or in data
+transferred to any auxiliary input/output device.</p>
+<h4><a class="header" href="#626-guarded-area-transfer-mode" id="626-guarded-area-transfer-mode">6.2.6. GUARDED AREA TRANSFER MODE</a></h4>
+<p>GUARD:
+Only unguarded data in an eligible area are transmitted.</p>
+<p>ALL:
+Guarded as well as unguarded data in an eligible area are transmitted.</p>
+<h4><a class="header" href="#627-horizontal-editing-mode" id="627-horizontal-editing-mode">6.2.7. HORIZONTAL EDITING MODE</a></h4>
+<p>FOLLOWING:</p>
+<p>A character insertion causes a string of following data beginning with the
+contents of the active position to be shifted forward; a character deletion
+causes a string of data following the active position to be shifted backward.</p>
+<p>PRECEDING:</p>
+<p>A character insertion causes a string of preceding data ending with the
+contents of the active position to be shifted backward; a character deletion
+causes a string of data preceding the active position to be shifted forward.</p>
+<h4><a class="header" href="#628-insertion-replacement-mode" id="628-insertion-replacement-mode">6.2.8. INSERTION REPLACEMENT MODE</a></h4>
+<p>REPLACE:</p>
+<p>The receipt of a graphic character or a control function for which a graphic
+representation is required causes the appropriate graphic symbol to replace
+(or, depending on implementation, to be combined with) the graphic symbol
+currently imaged at the active position.</p>
+<p>INSERT:</p>
+<p>The receipt of a graphic character or a control function for which a graphic
+representation is required causes the appropriate graphic symbol to be inserted
+at the active position.</p>
+<p>The operation of inserting a character is performed as described in 5.5</p>
+<h4><a class="header" href="#629-keyboard-action-mode" id="629-keyboard-action-mode">6.2.9. KEYBOARD ACTION MODE</a></h4>
+<p>ENABLED:
+All manual input facilities are enabled to be used.</p>
+<p>DISABLED:
+All or part of the manual input facilities are disabled.</p>
+<h4><a class="header" href="#6210-multiple-area-transfer-mode" id="6210-multiple-area-transfer-mode">6.2.10. MULTIPLE AREA TRANSFER MODE</a></h4>
+<p>SINGLE:
+Only the selected area which contains the active position is eligible to be
+transmitted.</p>
+<p>MULTIPLE:
+All selected areas are eligible to be transmitted.</p>
+<p>This mode is significant only if the SELECTED AREA TRANSFER MODE is set to
+SELECT.</p>
+<h4><a class="header" href="#6211-positioning-unit-mode" id="6211-positioning-unit-mode">6.2.11. POSITIONING UNIT MODE</a></h4>
+<p>CHARACTER:
+The unit for numeric parameters of the positioning format effectors is one
+character position.</p>
+<p>SIZE:
+The unit for numeric parameters of the positioning format effectors is that
+established by SELECT SIZE UNIT (SSU).</p>
+<h4><a class="header" href="#6212-selected-area-transfer-mode" id="6212-selected-area-transfer-mode">6.2.12. SELECTED AREA TRANSFER MODE</a></h4>
+<p>SELECT:
+Only selected areas are eligible to be transmitted.</p>
+<p>ALL:
+All data, irrespective of any explicitly defined selected areas, are eligible
+to be transmitted.</p>
+<h4><a class="header" href="#6213-sendreceive-mode" id="6213-sendreceive-mode">6.2.13. SEND/RECEIVE MODE</a></h4>
+<p>MONITOR:
+Data which are locally entered are immediately imaged.</p>
+<p>SIMULTANEOUS:</p>
+<p>Local input facilities are logically disconnected from the output mechanism;
+only data which are sent to the device are imaged.</p>
+<h4><a class="header" href="#6214-status-report-transfer-mode" id="6214-status-report-transfer-mode">6.2.14. STATUS REPORT TRANSFER MODE</a></h4>
+<p>NORMAL:
+No device status reports are generated automatically.</p>
+<p>DIAGNOSTIC:
+A device status report in the form of a device control string is automatically
+included in every transmitted data stream.</p>
+<h4><a class="header" href="#6215-tabulation-stop-mode" id="6215-tabulation-stop-mode">6.2.15. TABULATION STOP MODE</a></h4>
+<p>MULTIPLE:
+A horizontal tabulation stop applies to the corresponding character positions
+of all lines.</p>
+<p>SINGLE:
+A horizontal tabulation stop applies only to the line in which it is set.</p>
+<p><strong>NOTE 5</strong>: This mode is effective only when setting and clearing horizontal
+tabulation stops.</p>
+<h4><a class="header" href="#6216-transfer-termination-mode" id="6216-transfer-termination-mode">6.2.16. TRANSFER TERMINATION MODE</a></h4>
+<p>CURSOR:
+Only data preceding the active position are eligible to be transmitted.</p>
+<p>ALL:
+Data preceding, following and at the active position are eligible to be
+transmitted.</p>
+<h4><a class="header" href="#6217-vertical-editing-mode" id="6217-vertical-editing-mode">6.2.17. VERTICAL EDITING MODE</a></h4>
+<p>FOLLOWING:</p>
+<p>A line insertion causes the contents of the active line and of following lines
+to be shifted down; a line deletion causes the contents of following lines to
+be shifted up.</p>
+<p>PRECEDING:</p>
+<p>A line insertion causes the contents of the active line and of preceding lines
+to be shifted up. A line deletion causes the contents of preceding lines to be
+shifted down.</p>
+<h3><a class="header" href="#63-interaction-between-modes" id="63-interaction-between-modes">6.3. Interaction Between Modes</a></h3>
+<p>Three groups of modes are specified below. Each group contain
+two or more modes which interact with one another.</p>
+<h4><a class="header" href="#631-guarded-area-transfer-mode-multiple-area-transfer-mode-selected-area-transfer-mode-and-transfer-termination-mode" id="631-guarded-area-transfer-mode-multiple-area-transfer-mode-selected-area-transfer-mode-and-transfer-termination-mode">6.3.1. GUARDED AREA TRANSFER MODE, MULTIPLE AREA TRANSFER MODE, SELECTED AREA TRANSFER MODE and TRANSFER TERMINATION MODE</a></h4>
+<p>These modes have a combined effect on the format of a transmitted data stream
+or of a data stream transferred to an auxiliary input/output device, as
+described hereafter.</p>
+<p>The term &quot;active selected area'' is used to denote the selected area containing
+the active position. The term &quot;eligible&quot; is used to denote any area which may
+be considered for transmitting or transferring.</p>
+<ul>
+<li>
+<p>If the TRANSFER TERMINATION MODE is set to CURSOR, the SELECTED AREA TRANSFER
+MODE to SELECT, and the MULTIPLE AREA TRANSFER MODE to SINGLE, then the
+contents of the active selected area, up to but excluding the active
+position, are eligible.</p>
+</li>
+<li>
+<p>If the TRANSFER TERMINATION MODE is set to CURSOR, the SELECTED AREA TRANSFER
+MODE to SELECT, and the MULTIPLE AREA TRANSFER MODE to MULTIPLE, then the
+contents of any selected areas, up to but excluding the active position, are
+eligible.</p>
+</li>
+<li>
+<p>If the TRANSFER TERMINATION MODE is set to CURSOR and the SELECTED AREA
+TRANSFER MODE to ALL, then the contents of the buffer up to but excluding the
+active position, are eligible.</p>
+</li>
+<li>
+<p>If the TRANSFER TERMINATION MODE is set to ALL, the SELECTED AREA TRANSFER
+MODE to SELECT, and the MULTIPLE AREA TRANSFER MODE to SINGLE, then the
+complete contents of the active selected area are eligible.</p>
+</li>
+<li>
+<p>If the TRANSFER TERMINATION MODE is set to ALL, the SELECTED AREA TRANSFER
+MODE to SELECT, and the MULTIPLE AREA TRANSFER MODE to MULTIPLE, then the
+contents of all selected areas are eligible.</p>
+</li>
+<li>
+<p>If the TRANSFER TERMINATION MODE and the SELECTED AREA TRANSFER MODE are both
+set to ALL, then the complete contents of the buffer are eligible.</p>
+</li>
+<li>
+<p>If the GUARDED AREA TRANSFER MODE is set to GUARD, all of the eligible area
+or areas are transmitted or transferred, except for guarded areas which are
+completely contained within the eligible area. Those guarded areas which are
+only partly contained in eligible areas may be transmitted or not, depending
+on implementation. Exercise of such an option permits the repeated
+transmission of a constant part of a field using the control functions START
+OF PROTECTED AREA (SPA) and END OF PROTECTED AREA (EPA) while preventing it
+from being changed by the operator.  More sophisticated devices may obtain
+the same effect with the control function DEFINE AREA QUALIFICATION (DAQ).</p>
+</li>
+<li>
+<p>If the GUARDED AREA TRANSFER MODE is set to ALL, guarded as well as unguarded
+data in an eligible area are transmitted.</p>
+</li>
+</ul>
+<p>If the active position is not within a selected area, the format of the data
+stream in the first and fourth case above is not defined by this Standard.</p>
+<h4><a class="header" href="#632-control-representation-mode-and-format-effector-action-mode" id="632-control-representation-mode-and-format-effector-action-mode">6.3.2. CONTROL REPRESENTATION MODE and FORMAT EFFECTOR ACTION MODE</a></h4>
+<ul>
+<li>
+<p>If the CONTROL REPRESENTATION MODE is set to GRAPHIC, it overrides the
+setting of the FORMAT EFFECTOR ACTION MODE.</p>
+</li>
+<li>
+<p>If the CONTROL REPRESENTATION MODE is set to CONTROL, the way format
+effectors are processed depends on the setting of the FORMAT EFFECTOR ACTION
+MODE.</p>
+</li>
+</ul>
+<h4><a class="header" href="#633-horizontal-editing-mode-and-insertion-replacement-mode" id="633-horizontal-editing-mode-and-insertion-replacement-mode">6.3.3. HORIZONTAL EDITING MODE and INSERTION REPLACEMENT MODE</a></h4>
+<ul>
+<li>
+<p>If the INSERTION REPLACEMENT MODE is set to REPLACE, the HORIZONTAL EDITING
+MODE influences the control functions DELETE CHARACTER and INSERT CHARACTER
+only.</p>
+</li>
+<li>
+<p>If the INSERTION REPLACEMENT MODE is set to INSERT then, in addition, the
+effect of the receipt of a graphic character or a control function for which
+a graphic representation is required depends on the setting of the HORIZONTAL
+EDITING MODE.</p>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="05-device.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="07-control.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="05-device.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="07-control.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

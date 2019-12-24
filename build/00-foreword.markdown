@@ -1,3 +1,13 @@
+# STANDARD ECMA-48
+## ADDITIONAL CONTROL FUNCTIONS FOR CHARACTER-IMAGING I/O DEVICES
+
+2nd Edition-August 1979
+
+Free copies of this document are available from ECMA, European Computer
+Manufacturers Association.
+
+114 Rue du Rhone - 1204 Geneva (Switzerland)
+
 ## BRIEF HISTORY
 
 After having issued its Standard ECMA-35 for the extension of the 7-bit coded

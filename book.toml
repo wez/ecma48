@@ -1,0 +1,7 @@
+[book]
+title = "ECMA-48: Additional Control Functions for Character-Imaging I/O Devices"
+author = "European Computer Manufacturers Association"
+
+[build]
+build-dir = "build"
+create-missing = false

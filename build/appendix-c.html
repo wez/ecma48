@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Appendix C: Text Composition Device Concepts - ECMA-48: Additional Control Functions for Character-Imaging I/O Devices</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded affix "><a href="00-foreword.html">Foreword</a></li><li class="expanded "><a href="01-general.html"><strong aria-hidden="true">1.</strong> General</a></li><li class="expanded "><a href="02-references.html"><strong aria-hidden="true">2.</strong> References</a></li><li class="expanded "><a href="03-terminology.html"><strong aria-hidden="true">3.</strong> Notation &amp; Terminology</a></li><li class="expanded "><a href="04-coding.html"><strong aria-hidden="true">4.</strong> Coded Representations</a></li><li class="expanded "><a href="05-device.html"><strong aria-hidden="true">5.</strong> Device Concepts</a></li><li class="expanded "><a href="06-modes.html"><strong aria-hidden="true">6.</strong> Modes</a></li><li class="expanded "><a href="07-control.html"><strong aria-hidden="true">7.</strong> Control Functions</a></li><li class="expanded "><a href="08-relations.html"><strong aria-hidden="true">8.</strong> Relations between Modes and Control Functions</a></li><li class="expanded "><a href="09-transform.html"><strong aria-hidden="true">9.</strong> Transformation between 7-bit and 8-bit</a></li><li class="spacer"></li><li class="expanded affix "><a href="appendix-a.html">Appendix A: Editor Functions and Format Effectors</a></li><li class="expanded affix "><a href="appendix-b.html">Appendix B: Coding Examples</a></li><li class="expanded affix "><a href="appendix-c.html" class="active">Appendix C: Text Composition Device Concepts</a></li><li class="expanded affix "><a href="appendix-d.html">Appendix D: Implementation-Dependent Features</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">ECMA-48: Additional Control Functions for Character-Imaging I/O Devices</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2><a class="header" href="#appendix-c-text-composition-device-concepts" id="appendix-c-text-composition-device-concepts">APPENDIX C TEXT COMPOSITION DEVICE CONCEPTS</a></h2>
+<p>Display devices and systems involving text composition may utilize the control
+functions JUSTIFY and QUAD. When working in the field of text composition
+several words are used with quite specialized meaning. Those words have been
+used in this Standard with the meaning from the terminology of the printing and
+publishing industry.  Explanation is provided in this Annex in terms compatible
+with coded information interchange and the concepts of character-imaging
+devices.</p>
+<p>Both QUAD and JUSTIFY deal with the positioning of text (printed graphics and
+free spaces) between &quot;margins&quot;. Margins are areas protected against display at
+the boundaries of which lines of text may start and terminate. In the general
+case of a display device with a multiple-page buffer (capable of the QUAD or
+JUSTIFY functions) the margin(s) would be set at arbitrary absolute horizontal
+positions. No control functions are provided in this Standard to set margins
+(left, right, intermediate). The QUAD function deals with single lines of text
+from the data stream, while the JUSTIFY function may deal with more than one
+line. In both cases it is possible to &quot;flush&quot; text. When text is flush, it
+starts or ends, as applicable, against a marginal boundary. Flush to left
+margin means start text at the left margin (or first margin to the left in
+columnar texts). Similarly, flush to right margin means end text at the right
+margin. In the process of making text flush, open spaces may be generated.</p>
+<p>The action to &quot;fill&quot; open spaces involves a concept particular to the JUSTIFY
+and QUAD functions. The open spaces may be filled with a &quot;leader&quot; in the QUAD
+function. A leader is a pattern (most often a repeated string of graphic
+characters) which is inserted into the open area. In the use of the JUSTIFY
+function the fill operation is far more complicated and will be described
+below.</p>
+<p>Having considered margins and flush text it is necessary to consider text which
+is not intended to be flush to the margins. Text which meets this criterion
+falls into two categories. They are centred text and ragged text. This Standard
+deals explicitly with centred text and implicitly with ragged text. Centred
+text is arranged between margins such that the open space to the left and right
+margin are as equal as possible. Ragged is the term applied when text is
+neither centred nor flush to a margin.</p>
+<p>The process utilizing the JUSTIFY function involves the arrangement of text
+between margins either being flush (explicitly) or ragged (implicitly). In
+order to accomplish flush left and right, fill may be required. The fill may
+consist of SPACEs, Thin Spaces, words, or part of words. For the purposes of
+this description a word is considered as including the graphic characters of
+the word itself and the punctuation or space terminating the word. The rules
+regarding a specific justification process depend on the combination of the
+parameter values used. A line which is to be justified left and right with word
+fill will first be adjusted in length by the addition or removal of text in the
+form of words until the remaining words fit between the established margins.
+Words added to a line by such a process will be obtained from the data stream
+from its following line(s). Words removed from the line will be returned to the
+data stream in its following line(s). Subsequent to having sufficient words to
+fit between margins the open space (between words) may be adjusted to
+accomplish the combined flush-to-left-margin and flush to-right-margin action.
+This ‘spacing is adjusted by the intervals, or variable-size spaces according
+to the implementation. When the interword space parameter value has been used,
+the spacing adjustment is applicable between words. When the letter space
+parameter value has been used the spacing adjustment is applicable between
+adjacent graphic characters. When either or both interword space and letter
+space parameter values have been used the strategy for selecting which
+positions are to be widened is implementation-dependent.  Special cases of the
+above involve the use of partial words in the full process. In these cases a
+hyphenation process is used. If the hyphenation parameter value is used, words
+may be subdivided according to an implementation strategy at language intervals
+often corresponding to syllables. If the Italian hyphenation parameter value is
+used the first word which will not fit between the margins is truncated, the
+last character of the line is underlined and the remainder of the word is
+inserted in the data stream for use in the next line.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="appendix-b.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="appendix-d.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="appendix-b.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="appendix-d.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,1025 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Control Functions - ECMA-48: Additional Control Functions for Character-Imaging I/O Devices</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded affix "><a href="00-foreword.html">Foreword</a></li><li class="expanded "><a href="01-general.html"><strong aria-hidden="true">1.</strong> General</a></li><li class="expanded "><a href="02-references.html"><strong aria-hidden="true">2.</strong> References</a></li><li class="expanded "><a href="03-terminology.html"><strong aria-hidden="true">3.</strong> Notation &amp; Terminology</a></li><li class="expanded "><a href="04-coding.html"><strong aria-hidden="true">4.</strong> Coded Representations</a></li><li class="expanded "><a href="05-device.html"><strong aria-hidden="true">5.</strong> Device Concepts</a></li><li class="expanded "><a href="06-modes.html"><strong aria-hidden="true">6.</strong> Modes</a></li><li class="expanded "><a href="07-control.html" class="active"><strong aria-hidden="true">7.</strong> Control Functions</a></li><li class="expanded "><a href="08-relations.html"><strong aria-hidden="true">8.</strong> Relations between Modes and Control Functions</a></li><li class="expanded "><a href="09-transform.html"><strong aria-hidden="true">9.</strong> Transformation between 7-bit and 8-bit</a></li><li class="spacer"></li><li class="expanded affix "><a href="appendix-a.html">Appendix A: Editor Functions and Format Effectors</a></li><li class="expanded affix "><a href="appendix-b.html">Appendix B: Coding Examples</a></li><li class="expanded affix "><a href="appendix-c.html">Appendix C: Text Composition Device Concepts</a></li><li class="expanded affix "><a href="appendix-d.html">Appendix D: Implementation-Dependent Features</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">ECMA-48: Additional Control Functions for Character-Imaging I/O Devices</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2><a class="header" href="#7-control-functions" id="7-control-functions">7. CONTROL FUNCTIONS</a></h2>
+<h3><a class="header" href="#71-categories-of-control-functions" id="71-categories-of-control-functions">7.1. Categories of Control Functions</a></h3>
+<p>The following list groups the control functions defined in this Standard. This
+grouping is intended solely to aid in understanding the Standard and does not
+restrict the control functions to the indicated categories.</p>
+<p>This list also indicates the form of the control function by the following
+notations following the abbreviation:</p>
+<table><thead><tr><th>Notation</th><th>Meaning</th></tr></thead><tbody>
+<tr><td>No sign</td><td>the control function is an element of the C1 set.</td></tr>
+<tr><td>(n)</td><td>control sequence with one numeric parameter.</td></tr>
+<tr><td>(n;m)</td><td>control sequence with two numeric parameters.</td></tr>
+<tr><td>(s)</td><td>control sequence with selective parameter.</td></tr>
+<tr><td>(Fs)</td><td>ESC Fs sequence.</td></tr>
+</tbody></table>
+<h4><a class="header" href="#711-control-string-delimiters" id="711-control-string-delimiters">7.1.1. Control string delimiters</a></h4>
+<ul>
+<li><code>APC</code> APPLICATION PROGRAM COMMAND</li>
+<li><code>OSC</code> OPERATING SYSTEM COMMAND</li>
+<li><code>PM</code> PRIVACY MESSAGE</li>
+<li><code>ST</code> STRING TERMINATOR</li>
+<li><code>DCS</code> DEVICE CONTROL STRING</li>
+</ul>
+<h4><a class="header" href="#712-introducers" id="712-introducers">7.1.2. Introducers</a></h4>
+<ul>
+<li><code>CSI</code> CONTROL SEQUENCE INTRODUCER</li>
+</ul>
+<h4><a class="header" href="#713-shift-functions" id="713-shift-functions">7.1.3. Shift functions</a></h4>
+<ul>
+<li><code>SS2</code> SINGLE SHIFT 2</li>
+<li><code>SS3</code> SINGLE SHIFT 3</li>
+</ul>
+<h4><a class="header" href="#714-format-effectors" id="714-format-effectors">7.1.4. Format effectors</a></h4>
+<ul>
+<li><code>HPA (n)</code> HORIZONTAL POSITION ABSOLUTE</li>
+<li><code>HPR (n)</code> HORIZONTAL POSITION RELATIVE</li>
+<li><code>HT J</code> HORIZONTAL TABULATION WITH JUSTIFICATION</li>
+<li><code>HTS</code> HORIZONTAL TABULATION SET</li>
+<li><code>HVP (n;m)</code> HORIZONTAL AND VERTICAL POSITION</li>
+<li><code>IND</code> INDEX</li>
+<li><code>NEL</code> NEXT LINE</li>
+<li><code>PLD</code> PARTIAL LINE DOWN</li>
+<li><code>PLU</code> PARTIAL LINE UP</li>
+<li><code>RI</code> REVERSE INDEX</li>
+<li><code>SGR (s)</code> SELECT GRAPHIC RENDITION</li>
+<li><code>TBC (s)</code> TABULATION CLEAR</li>
+<li><code>VPA (n)</code> VERTICAL POSITION ABSOLUTE</li>
+<li><code>VPR (n)</code> VERTICAL POSITION RELATIVE</li>
+<li><code>VTS</code> VERTICAL TABULATION SET</li>
+</ul>
+<h4><a class="header" href="#715-additional-format-effectors-for-text-composition-devices" id="715-additional-format-effectors-for-text-composition-devices">7.1.5. Additional format effectors for text composition devices</a></h4>
+<ul>
+<li><code>FNT (n;m)</code> FONT SELECTION</li>
+<li><code>GSM (n;m)</code> GRAPHIC SIZE MODIFICATION</li>
+<li><code>GSS (n)</code> GRAPHIC SIZE SELECTION</li>
+<li><code>JFY  (s)</code> JUSTIFY</li>
+<li><code>QUAD (s)</code> QUAD</li>
+<li><code>SPI (n;m)</code> SPACING INCREMENT</li>
+<li><code>SSU (s)</code> SELECT SIZE UNIT</li>
+<li><code>TSS (n)</code> THIN SPACE SPECIFICATION</li>
+</ul>
+<h4><a class="header" href="#716-editor-functions-for-altering-the-visual-display" id="716-editor-functions-for-altering-the-visual-display">7.1.6. Editor functions for altering the visual display</a></h4>
+<ul>
+<li><code>DCH (n)</code> DELETE CHARACTER</li>
+<li><code>DL (n)</code> DELETE LINE</li>
+<li><code>EA (s)</code> ERASE IN AREA</li>
+<li><code>ECH (n)</code> ERASE CHARACTER</li>
+<li><code>ED (s)</code> ERASE IN DISPLAY</li>
+<li><code>EF (s)</code> ERASE IN FIELD</li>
+<li><code>BL (s)</code> ERASE IN LINE</li>
+<li><code>ICH (n)</code> INSERT CHARACTER</li>
+<li><code>IL (n)</code> INSERT LINE</li>
+</ul>
+<h4><a class="header" href="#717-editor-functions-for-moving-the-active-position" id="717-editor-functions-for-moving-the-active-position">7.1.7. Editor functions for moving the active position</a></h4>
+<ul>
+<li><code>CBT (n)</code> CURSOR BACKWARD TABULATION</li>
+<li><code>CHA (n)</code> CURSOR HORIZONTAL ABSOLUTE</li>
+<li><code>CHT (n)</code> CURSOR HORIZONTAL TABULATION</li>
+<li><code>CNL (n)</code> CURSOR NEXT LINE</li>
+<li><code>CPL (n)</code> CURSOR PRECEDING LINE</li>
+<li><code>CTC (s)</code> CURSOR TABULATION CONTROL</li>
+<li><code>CUB (n)</code> CURSOR BACKWARD</li>
+<li><code>CUD (n)</code> CURSOR DOWN</li>
+<li><code>CUF (n)</code> CURSOR FORWARD</li>
+<li><code>CUP (n;m)</code> CURSOR POSITION</li>
+<li><code>CUU (n)</code> CURSOR UP</li>
+<li><code>CVT (n)</code> CURSOR VERTICAL TABULATION</li>
+<li><code>NP (n)</code> NEXT PAGE</li>
+<li><code>PP (n)</code> PRECEDING PAGE</li>
+<li><code>SD (n)</code> SCROLL DOWN</li>
+<li><code>SL (n)</code> SCROLL LEFT</li>
+<li><code>SR (n)</code> SCROLL RIGHT</li>
+<li><code>SU (n)</code> SCROLL UP</li>
+</ul>
+<h4><a class="header" href="#718-form-filling" id="718-form-filling">7.1.8. Form filling</a></h4>
+<ul>
+<li><code>DAQ (s)</code> DEFINE AREA QUALIFICATION</li>
+<li><code>EPA</code> END OF PROTECTED AREA</li>
+<li><code>ESA</code> END OF SELECTED AREA</li>
+<li><code>SPA</code> START OF PROTECTED AREA</li>
+<li><code>SSA</code> START OF SELECTED AREA</li>
+</ul>
+<h4><a class="header" href="#719-mode-setting" id="719-mode-setting">7.1.9. Mode setting</a></h4>
+<ul>
+<li><code>RM (s)</code> RESET MODE</li>
+<li><code>SM (s)</code> SET MODE</li>
+</ul>
+<h4><a class="header" href="#7110-miscellaneous-control-functions" id="7110-miscellaneous-control-functions">7.1.10. Miscellaneous control functions</a></h4>
+<ul>
+<li><code>CCH</code> CANCEL CHARACTER</li>
+<li><code>CPR (n;m)</code> CURSOR POSITION REPORT</li>
+<li><code>DA (n)</code> DEVICE ATTRIBUTES</li>
+<li><code>DMI (Fs)</code> DISABLE MANUAL INPUT</li>
+<li><code>DSR (s)</code> DEVICE STATUS REPORT</li>
+<li><code>EMI (Fs)</code> ENABLE MANUAL INPUT</li>
+<li><code>INT (Fs)</code> INTERRUPT</li>
+<li><code>MC (s)</code> MEDIA COPY</li>
+<li><code>MW</code> MESSAGE WAITING</li>
+<li><code>PU1</code> PRIVATE USE ONE</li>
+<li><code>PU2</code> PRIVATE USE TWO</li>
+<li><code>REP (n)</code> REPEAT</li>
+<li><code>RIS (Fs)</code> RESET TO INITIAL STATE</li>
+<li><code>SEE (s)</code> SELECT EDITING EXTENT</li>
+<li><code>STS</code> SET TRANSMIT STATE</li>
+</ul>
+<h3><a class="header" href="#72-definition-of-control-functions" id="72-definition-of-control-functions">7.2. Definition of Control Functions</a></h3>
+<p>The symbol <code>n</code> used hereafter denotes the value of a numeric parameter. If
+there are two numeric parameters, <code>n</code> denotes the value of the first parameter
+and the symbol <code>m</code> that of the second parameter. In the absence of a numeric or
+selective parameter, the default value applies. Unassigned selective parameter
+values are reserved for future standardization.</p>
+<h4><a class="header" href="#721-apc---application-program-command" id="721-apc---application-program-command">7.2.1. APC - APPLICATION PROGRAM COMMAND</a></h4>
+<p>Representation: Table 1</p>
+<p>APC is the opening delimiter of a command string for an application program.
+The command string consists of a sequence of bit combinations of columns 2 to 7
+(except 7/15) and is closed by STRING TERMINATOR (ST) as a terminating
+delimiter. The interpretation of the command string depends on the relevant
+application program. This control function may need to be represented by a
+graphic symbol.</p>
+<h4><a class="header" href="#722-cbt---cursor-backward-tabulation" id="722-cbt---cursor-backward-tabulation">7.2.2. CBT - CURSOR BACKWARD TABULATION</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The active position is moved to the character position corresponding to the
+n-th preceding horizontal tabulation stop.</p>
+<h4><a class="header" href="#723-cch---cancel-character" id="723-cch---cancel-character">7.2.3. CCH - CANCEL CHARACTER</a></h4>
+<p>Representation: Table 1</p>
+<p>CCH indicates that the preceding graphic or control function of the data
+stream, represented by a single bit combination, an escape sequence, a single
+shift sequence or a control sequence, but not by a control string, is to be
+ignored.</p>
+<h4><a class="header" href="#724-cha---cursor-horizontal-absolute" id="724-cha---cursor-horizontal-absolute">7.2.4. CHA - CURSOR HORIZONTAL ABSOLUTE</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default
+Value: 1</p>
+<p>The active position is moved to the n-th character position of the active line.</p>
+<h4><a class="header" href="#725-cht---cursor-horizontal-tabulation" id="725-cht---cursor-horizontal-tabulation">7.2.5. CHT - CURSOR HORIZONTAL TABULATION</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The active position is moved to the character position corresponding to the
+n-th following horizontal tabulation stop.</p>
+<h4><a class="header" href="#726-cnl---cursor-next-line" id="726-cnl---cursor-next-line">7.2.6. CNL - CURSOR NEXT LINE</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The active position is moved to the first character position of the n-th
+following line.</p>
+<h4><a class="header" href="#727-cpl---cursor-preceding-line" id="727-cpl---cursor-preceding-line">7.2.7. CPL - CURSOR PRECEDING LINE</a></h4>
+<p>Representation: Table 2 - one numeric parameter: default value: 1</p>
+<p>The active position is moved to the first character position of the n-th
+preceding line.</p>
+<h4><a class="header" href="#728-cpr---cursor-position-report" id="728-cpr---cursor-position-report">7.2.8. CPR - CURSOR POSITION REPORT</a></h4>
+<p>Representation: Table 2 - two numeric parameters; default values: 1;1</p>
+<p>CPR reports the active position of the sending device as residing on the n-th
+line at the m-th character position.</p>
+<p>CPR may be solicited by a DSR or unsolicited.</p>
+<h4><a class="header" href="#729-csi---control-sequence-introducer" id="729-csi---control-sequence-introducer">7.2.9. CSI - CONTROL SEQUENCE INTRODUCER</a></h4>
+<p>Representation: Table 1</p>
+<p>CSI is the first character of a control sequence (see 4.3).</p>
+<h4><a class="header" href="#7210-ctc---cursor-tabulation-control" id="7210-ctc---cursor-tabulation-control">7.2.10. CTC - CURSOR TABULATION CONTROL</a></h4>
+<p>Representation: Table 2 - selective parameter; default value: 0</p>
+<p>CTC causes one or more tabulation stops to be set or cleared, depending on the
+parameter value:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>set a horizontal tabulation stop at the active position</td></tr>
+<tr><td>1</td><td>set a vertical tabulation stop at the active line</td></tr>
+<tr><td>2</td><td>clear the horizontal tabulation stop at the active position</td></tr>
+<tr><td>3</td><td>clear the vertical tabulation stop at the active line</td></tr>
+<tr><td>4</td><td>clear all horizontal tabulation stops at the active line</td></tr>
+<tr><td>5</td><td>clear all horizontal tabulation stops</td></tr>
+<tr><td>6</td><td>clear all vertical tabulation stops</td></tr>
+</tbody></table>
+<p>In case of parameter values 0,2 or 4, when horizontal tabulation stops are set
+or cleared, the number of lines affected depends on the setting of the
+TABULATION STOP MODE.</p>
+<h4><a class="header" href="#7211-cub---cursor-backward" id="7211-cub---cursor-backward">7.2.11. CUB - CURSOR BACKWARD</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The active position is moved to the n-th preceding character position.</p>
+<h4><a class="header" href="#7212-cud---cursor-down" id="7212-cud---cursor-down">7.2.12. CUD - CURSOR DOWN</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The active position is moved to the corresponding character position of the
+n-th following line.</p>
+<h4><a class="header" href="#7213-cuf---cursor-forward" id="7213-cuf---cursor-forward">7.2.13. CUF - CURSOR FORWARD</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The active position is moved to the n-th following character position.</p>
+<h4><a class="header" href="#7214-cup---cursor-position" id="7214-cup---cursor-position">7.2.14. CUP - CURSOR POSITION</a></h4>
+<p>Representation: Table 2 - two numeric parameters; default values: 1;1</p>
+<p>The active position is moved to the n-th line at the m-th character position.
+(The default values define the so-called home position.)</p>
+<h4><a class="header" href="#7215-cuu---cursor-up" id="7215-cuu---cursor-up">7.2.15. CUU - CURSOR UP</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The active position is moved to the corresponding character position of the
+n-th preceding line.</p>
+<h4><a class="header" href="#7216-cvt---cursor-vertical-tabulation" id="7216-cvt---cursor-vertical-tabulation">7.2.16. CVT - CURSOR VERTICAL TABULATION</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The active position is moved to the corresponding character position of the
+line corresponding to the n-th following vertical tabulation stop.</p>
+<h4><a class="header" href="#7217-da---device-attributes" id="7217-da---device-attributes">7.2.17. DA - DEVICE ATTRIBUTES</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 0</p>
+<p>With a parameter value not equal to 0, DA identifies the sending device. The
+parameter value is a device type identification code according to some register
+which is to be established. If the parameter value is 0, DA is used to solicit
+an identifying DA from the receiving device.</p>
+<h4><a class="header" href="#7218-daq---define-area-qualification" id="7218-daq---define-area-qualification">7.2.18. DAQ - DEFINE AREA QUALIFICATION</a></h4>
+<p>Representation: Table 2 - selective parameter; default value: 0</p>
+<p>DAQ indicates that the active position is the first character position of a
+qualified area. The end of the qualified area is indicated by the beginning of
+the following qualified area.</p>
+<p>The parameter value designates the type of qualified area:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>unprotected</td></tr>
+<tr><td>1</td><td>guarded (implies protected)</td></tr>
+<tr><td>2</td><td>graphic character input</td></tr>
+<tr><td>3</td><td>numeric input</td></tr>
+<tr><td>4</td><td>alphabetic input</td></tr>
+<tr><td>5</td><td>input to be justified to the right</td></tr>
+<tr><td>6</td><td>fill with ZEROs</td></tr>
+<tr><td>7</td><td>set horizontal tabulation stop at start of area</td></tr>
+<tr><td>8</td><td>protected (unguarded)</td></tr>
+<tr><td>9</td><td>fill with SPACEs</td></tr>
+</tbody></table>
+<p>This control function operates independently of the setting of the TABULATION
+STOP MODE; the horizontal tabulation stop set by parameter value 7 applies to
+the active line only.</p>
+<h4><a class="header" href="#7219-dch---delete-character" id="7219-dch---delete-character">7.2.19. DCH - DELETE CHARACTER</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The contents of the active position and the n-1 preceding or following
+character positions are removed, depending on the setting of the HORIZONTAL
+EDITING MODE. The contents of an adjacent string of character positions are
+shifted towards the active position. At the other end of the shifted string n
+character positions are erased.</p>
+<p>The position and the extent of the string affected by the deletion depend on
+the setting of the EDITING BOUNDARY MODE and of the HORIZONTAL EDITING MODE,
+and on the extent established by SELECT EDITING EXTENT (SEE).</p>
+<p>The effect of this control on the start or end of a selected area, start or end
+of a qualified area, or a tabulation stop in the shifted string is not defined
+by this Standard.</p>
+<h4><a class="header" href="#7220-dcs---device-control-string" id="7220-dcs---device-control-string">7.2.20. DCS - DEVICE CONTROL STRING</a></h4>
+<p>Representation: Table 1</p>
+<p>DCS is the opening delimiter of a device control string.  The device control
+string consists of a sequence of bit combinations of columns 2 to 7 (except
+7/15) and is closed by the terminating delimiter STRING TERMINATOR (ST).</p>
+<p>The device control string represents either one or more control commands for
+the receiving device, or one or more status reports from the sending device.
+The interpretation of the device control string depends on the sending and/or
+the receiving device. This control function may need to be representated by a
+graphic symbol.</p>
+<h4><a class="header" href="#7221-dl---delete-line" id="7221-dl---delete-line">7.2.21. DL - DELETE LINE</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The contents of the active line and the n-1 preceding or following lines are
+removed, depending on the setting of the VERTICAL EDITING MODE. The contents of
+a number of preceding or following lines are shifted towards the active line.
+At the other end of the shifted part n lines are erased. The extent of the data
+affected by the deletion depends on the setting of the EDITING BOUNDARY MODE.</p>
+<p>Any occurrences of the start or end of a selected area, the start or end of a
+qualified area, or a tabulation stop in the shifted part are also shifted.</p>
+<p>If the TABULATION STOP MODE is set to SINGLE, horizontal tabulation stops in
+the erased lines are cleared.</p>
+<p>The effect of DL on the active position is not defined by this Standard.</p>
+<h4><a class="header" href="#7222-dmi---disable-manual-input" id="7222-dmi---disable-manual-input">7.2.22. DMI - DISABLE MANUAL INPUT</a></h4>
+<p>Representation: Table 4</p>
+<p>A control function which causes all or part of the manual input facilities of
+the receiving device to be disabled.</p>
+<p><strong>NOTE 6</strong>: This control function does not apply to those parts of the manual
+input facilities which are disabled by the setting of the KEYBOARD ACTION MODE.</p>
+<h4><a class="header" href="#7223-dsr---device-status-report" id="7223-dsr---device-status-report">7.2.23. DSR - DEVICE STATUS REPORT</a></h4>
+<p>Representation: Table 2 - selective parameter; default value: 0</p>
+<p>DSR either reports the status of the sending device or requests a status report
+from the receiving device, depending on the parameter value:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>ready, no malfunction detected</td></tr>
+<tr><td>1</td><td>busy, another DSR must be requested later</td></tr>
+<tr><td>2</td><td>busy, another DSR will be sent later</td></tr>
+<tr><td>3</td><td>some malfunction detected, another DSR must be requested later</td></tr>
+<tr><td>4</td><td>some malfunction detected, another DSR will be sent later</td></tr>
+<tr><td>5</td><td>a DSR is requested</td></tr>
+<tr><td>6</td><td>a report of the active position in the form of a CPR is requested.</td></tr>
+</tbody></table>
+<p>DSR with parameter value 0, 1, 2, 3 or 4 may be sent either unsolicited or as a
+response to a request such as a DSR with a parameter value 5 or MESSAGE WAITING
+(MW).</p>
+<h4><a class="header" href="#7224-ea---erase-in-area" id="7224-ea---erase-in-area">7.2.24. EA - ERASE IN AREA</a></h4>
+<p>Representation: Table 2 - selective parameter; default value: 0</p>
+<p>Some or all character positions of the active qualified area, i.e. the
+qualified area in which the active position resides, are erased, depending on
+the parameter value:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>the active position and the character positions up to the end of the qualified area are erased</td></tr>
+<tr><td>1</td><td>the character positions from the beginning of the qualified area up to and including the active position are erased</td></tr>
+<tr><td>2</td><td>all character positions of the qualified area are erased.</td></tr>
+</tbody></table>
+<p>The extent of the string affected by the erasure depends on the setting of the
+EDITING BOUNDARY MODE. Whether protected areas are erased, or unprotected areas
+only, depends on the setting of the ERASURE MODE.</p>
+<h4><a class="header" href="#7225-ech---erase-character" id="7225-ech---erase-character">7.2.25. ECH - ERASE CHARACTER</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value; 1</p>
+<p>The active position and the n-1 following character positions are erased. The
+extent of the string affected by the erasure depends on the setting of the
+EDITING BOUNDARY MODE,</p>
+<p>Whether protected areas are erased, or unprotected areas only, depends on the
+setting of the ERASURE MODE.</p>
+<h4><a class="header" href="#7226-ed---erase-in-display" id="7226-ed---erase-in-display">7.2.26. ED - ERASE IN DISPLAY</a></h4>
+<p>Representation: Table 2 - selective parameter; default value: 0</p>
+<p>Some or all character positions of the active page, i.e.  the page in which the
+active position resides, are erased, depending on the parameter value:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>the active position and the character positions up to the end of the page are erased</td></tr>
+<tr><td>1</td><td>the character positions from the beginning of the page up to and including the active position are erased</td></tr>
+<tr><td>2</td><td>all character positions of the page are erased.</td></tr>
+</tbody></table>
+<p>The extent of the string affected by the erasure depends on the setting of the
+EDITING BOUNDARY MODE.</p>
+<p>Whether protected areas are erased, or unprotected areas only, depends on the
+setting of the ERASURE MODE.</p>
+<h4><a class="header" href="#7227-ef---erase-in-field" id="7227-ef---erase-in-field">7.2.27. EF - ERASE IN FIELD</a></h4>
+<p>Representation: Table 2 - selective parameter, default value: 0</p>
+<p>Some or all character positions of the active field, i.e.  the field in which
+the active position resides, are erased, depending on the parameter value:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>the active position and the character positions up to the end of the field are erased</td></tr>
+<tr><td>1</td><td>the character positions from the beginning of the field up to and including the active positions are erased</td></tr>
+<tr><td>2</td><td>all character positions of the field are erased.</td></tr>
+</tbody></table>
+<p>The extent of the string affected by the erasure depends on the setting of the
+EDITING BOUNDARY MODE.</p>
+<p>Whether protected areas are erased, or unprotected areas only, depends on the
+setting of the ERASURE MODE.</p>
+<h4><a class="header" href="#7228-el---erase-in-line" id="7228-el---erase-in-line">7.2.28. EL - ERASE IN LINE</a></h4>
+<p>Representation: Table 2 - selective parameter; default value: 0</p>
+<p>Some or all character positions of the active line are
+erased, depending on the parameter value:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>the active position and the character positions up to the end of the line are erased</td></tr>
+<tr><td>1</td><td>the character positions from the beginning of the line up to and including the active positions are erased</td></tr>
+<tr><td>2</td><td>all character positions of the line are erased.</td></tr>
+</tbody></table>
+<p>The extent of the string affected by the erasure depends on the setting of the
+EDITING BOUNDARY MODE.</p>
+<p>Whether protected areas are erased, or unprotected areas only, depends on the
+setting of the ERASURE MODE.</p>
+<h4><a class="header" href="#7229-emi---enable-manual-input" id="7229-emi---enable-manual-input">7.2.29. EMI - ENABLE MANUAL INPUT</a></h4>
+<p>Representation: Table 4</p>
+<p>EMI enables the manual input facilities of the receiving device to be used.</p>
+<p><strong>NOTE 7</strong>: This control function does not apply to those parts of the manual
+input facilities which are disabled by the setting of the KEYBOARD ACTION MODE.</p>
+<h4><a class="header" href="#7230-epa---end-of-protected-area" id="7230-epa---end-of-protected-area">7.2.30. EPA - END OF PROTECTED AREA</a></h4>
+<p>Representation: Table 1</p>
+<p>EPA indicates that the active position is the end of a string of character
+positions, the contents of which are protected against manual alteration and
+are guarded against transmission. The beginning of this string is indicated by
+START OF PROTECTED AREA (SPA).</p>
+<h4><a class="header" href="#7231-esa---end-of-selected-area" id="7231-esa---end-of-selected-area">7.2.31. ESA - END OF SELECTED AREA</a></h4>
+<p>Representation: Table 1</p>
+<p>ESA indicates that the active position is the end of a string of character
+positions, the contents of which are eligible to be transmitted in the form of
+a data stream or transferred to an auxiliary input/output device. The beginning
+of this string is indicated by START OF SELECTED AREA (SSA).</p>
+<h4><a class="header" href="#7232-fnt---font-selection" id="7232-fnt---font-selection">7.2.32. FNT - FONT SELECTION</a></h4>
+<p>Representation: Table 3 - two numeric parameters; default values: 0;0.</p>
+<p>FNT is a format effector which designates the character font invoked as primary
+or alternative font by SELECT GRAPHIC RENDITION (SGR). n specifies the primary
+or alternative font concerned:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>primary font</td></tr>
+<tr><td>1</td><td>first alternative font</td></tr>
+<tr><td>2</td><td>second alternative font</td></tr>
+<tr><td>..</td><td></td></tr>
+<tr><td>9</td><td>ninth alternative font</td></tr>
+</tbody></table>
+<p><code>m</code> identifies the character font to be designated according to some register
+which is to be established.</p>
+<h4><a class="header" href="#7233-gsm---graphic-size-modification" id="7233-gsm---graphic-size-modification">7.2.33. GSM - GRAPHIC SIZE MODIFICATION</a></h4>
+<p>Representation: Table 3 - two numeric parameters; default values: 100;100</p>
+<p>GSM is a format effector which causes the height and/or the width of all
+designated primary and alternative fonts, as established by GRAPHIC SIZE
+SELECTION (GSS), to be modified, until the following occurrence of either GSM
+or GSS in the data stream.</p>
+<p><code>n</code> specifies the percentage by which the height is to be multiplied.</p>
+<p><code>m</code> specifies the percentage by which the width is to be multiplied.</p>
+<p>GSM affects only those characters which follow it in the data stream, not those
+previously received.</p>
+<h4><a class="header" href="#7234-gss---graphic-size-selection" id="7234-gss---graphic-size-selection">7.2.34. GSS - GRAPHIC SIZE SELECTION</a></h4>
+<p>Representation: Table 3 - one numeric parameter; no default value.</p>
+<p>GSS is a format effector which causes the height and the width of all
+designated primary and alternative fonts to be established, until the following
+occurrence of GSS in the data stream. Where n specifies the height; the width
+is implicitly defined by the height. The unit in which n is expressed is that
+established by SELECT SIZE UNIT (SSU).  GSS affects only those characters which
+follow it in the data stream, not those previously received.</p>
+<h4><a class="header" href="#7235-hpa---horizontal-position-absolute" id="7235-hpa---horizontal-position-absolute">7.2.35. HPA - HORIZONTAL POSITION ABSOLUTE</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>HPA is a format effector which causes the active position to be moved to the
+n-th horizontal position of the active line.</p>
+<p>The unit in which n is expressed depends on the setting of the POSITIONING UNIT
+MODE.</p>
+<h4><a class="header" href="#7236-hpr---horizontal-position-relative" id="7236-hpr---horizontal-position-relative">7.2.36. HPR - HORIZONTAL POSITION RELATIVE</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>HPR is a format effector which causes the active position to be moved to the
+n-th following horizontal position.</p>
+<p>The unit in which n is expressed depends on the setting of the POSITIONING UNIT
+MODE.</p>
+<h4><a class="header" href="#7237-htj---horizontal-tabulation-with-justification" id="7237-htj---horizontal-tabulation-with-justification">7.2.37. HTJ - HORIZONTAL TABULATION WITH JUSTIFICATION</a></h4>
+<p>Representation: Table 1</p>
+<p>HTJ is a format effector which causes the contents of the string of character
+positions between the preceding horizontal tabulation stop and the active
+position to be shifted forward to the following horizontal tabulation stop.</p>
+<p>The active position is also moved to the following horizontal tabulation stop.
+The character positions between the preceding horizontal tabulation stop and
+the beginning of the shifted string are erased.</p>
+<h4><a class="header" href="#7238-hts---horizontal-tabulation-set" id="7238-hts---horizontal-tabulation-set">7.2.38. HTS - HORIZONTAL TABULATION SET</a></h4>
+<p>Representation: Table 1</p>
+<p>HTS is a format effector which causes a horizontal tabulation stop to be set at
+the active position.</p>
+<p>The number of lines affected depends on the setting of the TABULATION STOP
+MODE.</p>
+<h4><a class="header" href="#7239-hvp---horizontal-and-vertical-position" id="7239-hvp---horizontal-and-vertical-position">7.2.39. HVP - HORIZONTAL AND VERTICAL POSITION</a></h4>
+<p>Representation: Table 2 - two numeric parameters; default values: 1;1</p>
+<p>HVP is a format effector which causes the active position to be moved to the
+n-th vertical position at the m-th horizontal position. The unit in which n and
+m are expressed depends on the setting of the POSITIONING UNIT MODE.</p>
+<h4><a class="header" href="#7240-ich---insert-character" id="7240-ich---insert-character">7.2.40. ICH - INSERT CHARACTER</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p><code>n</code> erased character positions are inserted at the active position. The
+previous contents of the active position and an adjacent string of character
+positions are shifted away from the active position. The contents of n
+character positions at the other end of the shifted string are removed.</p>
+<p>The position and the extent of the string affected by the insertion depend on
+the setting of the EDITING BOUNDARY MODE and of the HORIZONTAL EDITING MODE,
+and on the extent established by SELECT EDITING EXTENT (SEE). The effect of
+this control function on the start or end of a selected area, the start or end
+of a qualified area, or a tabulation stop in the shifted string is not defined
+by this Standard.</p>
+<h4><a class="header" href="#7241-il---insert-line" id="7241-il---insert-line">7.2.41. IL - INSERT LINE</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p><code>n</code> erased lines are inserted at the active line. The previous contents of the
+active line and a number of preceding or following lines are shifted away from
+the active line, depending on the setting of the VERTICAL EDITING MODE. The
+extent of the part affected by the insertion depends on the setting of the
+EDITING BOUNDARY MODE. The contents of n lines at the end of the shifted part
+are removed.</p>
+<p>Any occurrences of the start or end of a selected area, the start or end of.a
+qualified area, or a tabulation stop in the shifted part are also shifted.</p>
+<p>If the TABULATION STOP MODE is set to SINGLE, horizontal tabulation stops in
+the erased lines are cleared.</p>
+<p>The effect of this control function on the active position is not defined by
+this Standard.</p>
+<h4><a class="header" href="#7242-ind---index" id="7242-ind---index">7.2.42. IND - INDEX</a></h4>
+<p>Representation: Table 1</p>
+<p>IND is a format effector which causes the active position to be moved to the
+corresponding character position of the following line.</p>
+<h4><a class="header" href="#7243-int---interrupt" id="7243-int---interrupt">7.2.43. INT - INTERRUPT</a></h4>
+<p>Representation: Table 4</p>
+<p>INT indicates to the receiving device that the current process is to be
+interrupted and an agreed procedure is to be initiated. This control function
+is applicable to either direction of transmission.</p>
+<h4><a class="header" href="#7244-jfy---justify" id="7244-jfy---justify">7.2.44. JFY - JUSTIFY</a></h4>
+<p>Representation: Table 3 - selective parameter, default value: 0</p>
+<p>JFY is a format effector which indicates the beginning of a string of character
+positions, the contents of which are to be justified according to the layout
+specified by the parameter value (see Annex C)</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>end of justification</td></tr>
+<tr><td>1</td><td>word fill</td></tr>
+<tr><td>2</td><td>interword space</td></tr>
+<tr><td>3</td><td>letter space</td></tr>
+<tr><td>4</td><td>hyphenation</td></tr>
+<tr><td>5</td><td>flush to left margin</td></tr>
+<tr><td>6</td><td>centre between margins</td></tr>
+<tr><td>7</td><td>flush to right margin</td></tr>
+<tr><td>8</td><td>Italian hyphenation</td></tr>
+</tbody></table>
+<p>JFY affects only those characters which follow it in the data stream, not those
+previously received. The end of the string to be justified is indicated by the
+next occurrence of JFY in the data stream.</p>
+<h4><a class="header" href="#7245-mc---media-copy" id="7245-mc---media-copy">7.2.45. MC - MEDIA COPY</a></h4>
+<p>Representation: Table 2 - selective parameter; default value: 0</p>
+<p>MC controls the transfer of data from or to an auxiliary input/output device.
+It either indicates a transfer of data from or to an auxiliary input/output
+device or enables or disables the received data stream to be relayed to an
+auxiliary input/output device depending on the parameter value:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>initiate transfer to primary auxiliary device</td></tr>
+<tr><td>1</td><td>initiate transfer from primary auxiliary device</td></tr>
+<tr><td>2</td><td>initiate transfer to secondary auxiliary device</td></tr>
+<tr><td>3</td><td>initiate transfer from secondary auxiliary device</td></tr>
+<tr><td>4</td><td>stop relay to primary auxiliary device</td></tr>
+<tr><td>5</td><td>start relay to primary auxiliary device</td></tr>
+<tr><td>6</td><td>stop relay to secondary auxiliary device</td></tr>
+<tr><td>7</td><td>start relay to secondary auxiliary device</td></tr>
+</tbody></table>
+<p>This control function is not intended to switch on and off an auxiliary device.</p>
+<h4><a class="header" href="#7246-mw---message-waiting" id="7246-mw---message-waiting">7.2.46. MW - MESSAGE WAITING</a></h4>
+<p>Representation: Table 1</p>
+<p>MW causes a message waiting indicator to be set in the receiving device. An
+appropriate acknowledgement to the receipt of MW may be given by DEVICE STATUS
+REPORT (DSR).</p>
+<h4><a class="header" href="#7247-nel---next-line" id="7247-nel---next-line">7.2.47. NEL - NEXT LINE</a></h4>
+<p>Representation: Table 1</p>
+<p>NEL is a format effector which causes the active position to be moved to the
+first character position of the following line.</p>
+<h4><a class="header" href="#7248-np---next-page" id="7248-np---next-page">7.2.48. NP - NEXT PAGE</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The n-th following page of a multiple-page buffer is displayed. The effect of
+this control function on the active position is not defined by this Standard.</p>
+<h4><a class="header" href="#7249-osc---operating-system-command" id="7249-osc---operating-system-command">7.2.49. OSC - OPERATING SYSTEM COMMAND</a></h4>
+<p>Representation: Table 1</p>
+<p>OSC is the opening delimiter of a command string for an operating system. The
+command string consists of a sequence of bit combinations of column 2 to 7
+(except 7/15) and is closed by the terminating delimiter STRING TERMINATOR
+(ST).  The interpretation of the command string depends on the relevant
+operating system.</p>
+<p>This control function may need to be represented by a graphic symbol.</p>
+<h4><a class="header" href="#7250-pld---partial-line-down" id="7250-pld---partial-line-down">7.2.50. PLD - PARTIAL LINE DOWN</a></h4>
+<p>Representation: Table 1</p>
+<p>PLD is a format effector which causes the active position to be moved to the
+corresponding character position of an imaginary line with a partial vertical
+offset. This offset should be sufficient either to image following characters
+as subscripts until the first following occurrence of PARTIAL LINE UP (PLU) in
+the data stream, or, if the immediately preceding character is imaged as a
+superscript to restore subsequent imaging of characters to the active line.</p>
+<p>Any interactions between PLD and vertical format effectors other than PLU are
+not defined by this Standard.</p>
+<h4><a class="header" href="#7251-plu---partial-line-up" id="7251-plu---partial-line-up">7.2.51. PLU - PARTIAL LINE UP</a></h4>
+<p>Representation: Table 1</p>
+<p>PLU is a format effector which causes the active position to be moved to the
+corresponding character position of an imaginary line with a partial vertical
+offset. This offset should be sufficient either to image following characters
+as superscripts until the first following occurrence of PARTIAL LINE DOWN (PLD)
+in the data stream, or, if the immediately preceding character is imaged as a
+subscript, to restore subsequent imaging of characters to the active Line.</p>
+<p>Any interactions between PLU and vertical format effectors other than PLD are
+not defined by this Standard.</p>
+<h4><a class="header" href="#7252-pm---privacy-message" id="7252-pm---privacy-message">7.2.52. PM - PRIVACY MESSAGE</a></h4>
+<p>Representation: Table 1</p>
+<p>PM is the opening delimiter of a privacy message. The privacy message consists
+of a sequence of bit combinations of columns 2 to 7 (except 7/15) and is closed
+by the terminating delimiter STRING TERMINATOR (ST). The interpretation of the
+privacy message depends on the relevant privacy discipline.</p>
+<p>This control function may need to be represented by a graphic symbol.</p>
+<h4><a class="header" href="#7253-pp---preceding-page" id="7253-pp---preceding-page">7.2.53. PP - PRECEDING PAGE</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The n-th preceding page of a multiple-page buffer is displayed.</p>
+<p>The effect of this control function on the active position is not defined by
+this Standard.</p>
+<h4><a class="header" href="#7254-pu1---private-use-1" id="7254-pu1---private-use-1">7.2.54. PU1 - PRIVATE USE 1</a></h4>
+<p>Representation: Table 1</p>
+<p>PU1 is reserved for a function without standardized meaning for private use as
+required, subject to the prior agreement of the sender and the recipient of the
+data.</p>
+<h4><a class="header" href="#7255-pu2---private-use-2" id="7255-pu2---private-use-2">7.2.55. PU2 - PRIVATE USE 2</a></h4>
+<p>Representation: Table 1</p>
+<p>PU2 is reserved for a function without standardized meaning for private use as
+required, subject to the prior agreement of the sender and the recipient of the
+data.</p>
+<h4><a class="header" href="#7256-quad---quad" id="7256-quad---quad">7.2.56. QUAD - QUAD</a></h4>
+<p>Representation: Table 3 - selective parameter; default value: 0</p>
+<p>QUAD is a format effector which indicates the end of a string of character
+positions in the data stream, the contents of which are to be positioned on a
+single line according to the layout specified by the parameter value (see Annex
+C):</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>flush to left margin</td></tr>
+<tr><td>1</td><td>flush to left margin and fill with leader</td></tr>
+<tr><td>2</td><td>centre between margins</td></tr>
+<tr><td>3</td><td>centre between margins and fill with leader</td></tr>
+<tr><td>4</td><td>flush to right margin</td></tr>
+<tr><td>5</td><td>flush to right margin and fill with leader</td></tr>
+</tbody></table>
+<p>The beginning of the string to be positioned is indicated by the preceding
+occurrence of either QUAD or one of the following vertical format effectors:
+FF, HVP, IND, LF, NEL, RI, VPA, VPR or VT in the data stream.</p>
+<h4><a class="header" href="#7257-rep---repeat" id="7257-rep---repeat">7.2.57. REP - REPEAT</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>The preceding graphic or the effect of the preceding control function in the
+data stream (if this control function is represented by a single bit
+combination, an escape sequence, a single shift sequence or a control sequence,
+but not by a control string) is repeated n times.</p>
+<h4><a class="header" href="#7258-ri---reverse-index" id="7258-ri---reverse-index">7.2.58. RI - REVERSE INDEX</a></h4>
+<p>Representation: Table 1</p>
+<p>RI is a format effector which causes the active position to be moved to the
+corresponding character position of the preceding line.</p>
+<h4><a class="header" href="#7259-ris---reset-to-initial-state" id="7259-ris---reset-to-initial-state">7.2.59. RIS - RESET TO INITIAL STATE</a></h4>
+<p>Representation: Table 4</p>
+<p>RIS resets a device to its initial state, i.e. the state it has after it is
+switched on. This may imply, if applicable: remove tabulation stops, remove
+qualified areas, reset graphic rendition, erase all positions, move active
+position to first character position of first line.</p>
+<h4><a class="header" href="#7260-rm---reset-mode" id="7260-rm---reset-mode">7.2.60. RM - RESET MODE</a></h4>
+<p>Representation: Table 2 - selective parameter, no default value</p>
+<p>RM. resets the modes of the receiving device specified by the parameter value
+(see SET MODE, SM).</p>
+<h4><a class="header" href="#7261-sd---scroll-down" id="7261-sd---scroll-down">7.2.61. SD - SCROLL DOWN</a></h4>
+<p>Representation: Table 2 - one numeric parameter, default value: 1</p>
+<p>The displayed portion of a multiple-page buffer is moved by n lines such that
+the displayed data appear to move down.</p>
+<p>The effect of this control function on the active position is not defined by
+this Standard.</p>
+<h4><a class="header" href="#7262-see---select-editing-extent" id="7262-see---select-editing-extent">7.2.62. SEE - SELECT EDITING EXTENT</a></h4>
+<p>Representation: Table 2 - selective parameter; default
+value: 0</p>
+<p>SEE establishes the editing extent for character insertion
+or deletion, depending on the parameter value:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>The affected string consists of the entire buffer, or the displayed portion, depending on the setting of the EDITING BOUNDARY MODE</td></tr>
+<tr><td>1</td><td>The affected string consists of the active line</td></tr>
+<tr><td>2</td><td>The affected string consists of the data between the preceding and the following horizontal tabulation stop</td></tr>
+<tr><td>3</td><td>The affected string consists of the qualified area containing the active position</td></tr>
+</tbody></table>
+<h4><a class="header" href="#7263-sgr---select-graphic-rendition" id="7263-sgr---select-graphic-rendition">7.2.63. SGR - SELECT GRAPHIC RENDITION</a></h4>
+<p>Representation: Table 2 - selective parameter; default value: 0</p>
+<p>SGR is a format effector which indicates the beginning of a string of character
+positions in the data stream, the contents of which are to be rendered in a
+discernable, uniformly different way. The end of this string is indicated by
+the following occurrence of SGR in the data stream. The graphic rendition is
+specified by a parameter value:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>default rendition (implementation-defined)</td></tr>
+<tr><td>1</td><td>bold or increased intensity</td></tr>
+<tr><td>2</td><td>faint, decreased intensity or second color</td></tr>
+<tr><td>3</td><td>italics</td></tr>
+<tr><td>4</td><td>underlined</td></tr>
+<tr><td>5</td><td>slowly blinking (less than 150 per minute)</td></tr>
+<tr><td>6</td><td>rapidly blinking (150 per minute or more)</td></tr>
+<tr><td>7</td><td>negative image</td></tr>
+<tr><td>8</td><td>concealed data</td></tr>
+<tr><td>9</td><td>(reserved for future standardization)</td></tr>
+<tr><td>10</td><td>primary font</td></tr>
+<tr><td>11</td><td>first alternative font</td></tr>
+<tr><td>..</td><td></td></tr>
+<tr><td>19</td><td>ninth alternative font</td></tr>
+<tr><td>20</td><td>fraktur</td></tr>
+<tr><td>21 to 29</td><td>(reserved for future standardization)</td></tr>
+<tr><td>30</td><td>black display</td></tr>
+<tr><td>31</td><td>red display</td></tr>
+<tr><td>32</td><td>green display</td></tr>
+<tr><td>33</td><td>yellow display</td></tr>
+<tr><td>34</td><td>blue display</td></tr>
+<tr><td>35</td><td>magenta display</td></tr>
+<tr><td>36</td><td>cyan display</td></tr>
+<tr><td>37</td><td>white display</td></tr>
+<tr><td>38</td><td>(reserved for future standardization)</td></tr>
+<tr><td>39</td><td>(reserved for future standardization)</td></tr>
+<tr><td>40</td><td>black background</td></tr>
+<tr><td>41</td><td>red background</td></tr>
+<tr><td>42</td><td>green background</td></tr>
+<tr><td>43</td><td>yellow background</td></tr>
+<tr><td>44</td><td>blue background</td></tr>
+<tr><td>45</td><td>magenta background</td></tr>
+<tr><td>46</td><td>cyan background</td></tr>
+<tr><td>47</td><td>white background</td></tr>
+</tbody></table>
+<h5><a class="header" href="#7264-sl---scroll-left" id="7264-sl---scroll-left">7.2.64. SL - SCROLL LEFT</a></h5>
+<p>Representation: Table 3 - one numeric parameter; default value: 1</p>
+<p>The displayed portion of a multiple-page buffer is moved by n character
+positions such that the displayed data appear to move to the left.</p>
+<p>The effect of this control on the active position is not defined by this
+Standard.</p>
+<h4><a class="header" href="#7265-sm---set-mode" id="7265-sm---set-mode">7.2.65. SM - SET MODE</a></h4>
+<p>Representation: Table 2 - selective parameter; no default value</p>
+<p>SM sets the modes of the receiving device specified by the parameter value:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>1</td><td>GUARDED AREA TRANSFER MODE</td></tr>
+<tr><td>2</td><td>KEYBOARD ACTION MODE</td></tr>
+<tr><td>3</td><td>CONTROL REPRESENTATION MODE</td></tr>
+<tr><td>4</td><td>INSERTION - REPLACEMENT MODE</td></tr>
+<tr><td>5</td><td>STATUS REPORT TRANSFER MODE</td></tr>
+<tr><td>6</td><td>ERASURE MODE</td></tr>
+<tr><td>7</td><td>VERTICAL EDITING MODE</td></tr>
+<tr><td>8</td><td>(reserved for future standardization)</td></tr>
+<tr><td>9</td><td>(reserved for future standardization)</td></tr>
+<tr><td>10</td><td>HORIZONTAL EDITING MODE</td></tr>
+<tr><td>11</td><td>POSITIONING UNIT MODE</td></tr>
+<tr><td>12</td><td>SEND/RECEIVE MODE</td></tr>
+<tr><td>13</td><td>FORMAT EFFECTOR ACTION MODE</td></tr>
+<tr><td>14</td><td>FORMAT EFFECTOR TRANSFER MODE</td></tr>
+<tr><td>15</td><td>MULTIPLE AREA TRANSFER MODE</td></tr>
+<tr><td>16</td><td>TRANSFER TERMINATION MODE</td></tr>
+<tr><td>17</td><td>SELECTED AREA TRANSFER MODE</td></tr>
+<tr><td>18</td><td>TABULATION STOP MODE</td></tr>
+<tr><td>19</td><td>EDITING BOUNDARY MODE</td></tr>
+</tbody></table>
+<h4><a class="header" href="#7266-spa---start-of-protected-area" id="7266-spa---start-of-protected-area">7.2.66. SPA - START OF PROTECTED AREA</a></h4>
+<p>Representation: Table 1</p>
+<p>SPA indicates that the active position is the first of a string of character
+positions, the contents of which are protected against manual alteration and
+are guarded against transmission. The end of this string is indicated by END OF
+PROTECTED AREA (EPA).</p>
+<h4><a class="header" href="#7267-spi---spacing-increment" id="7267-spi---spacing-increment">7.2.67. SPI - SPACING INCREMENT</a></h4>
+<p>Representation: Table 3 - two numeric parameters; no default values</p>
+<p>SPI is a format effector which causes the interline spacing and the width of a
+horizontal space to be established, for characters following in the data
+stream, until the next occurrence of SPI in the data stream.</p>
+<p><code>n</code> specifies the interline spacing; <code>m</code> specifies the width of a fixed
+horizontal space.</p>
+<p>The unit in which n and m are expressed is that established by SELECT SIZE UNIT
+(SSU).</p>
+<h4><a class="header" href="#7268-sr---scroll-right" id="7268-sr---scroll-right">7.2.68. SR - SCROLL RIGHT</a></h4>
+<p>Representation: Table 3 - one numeric parameter; default Value: 1</p>
+<p>The displayed portion of a multiple-page buffer is moved by n character
+positions such that the displayed data appear to move to the right.</p>
+<p>The effect of this control function on the active position is not defined by
+this Standard.</p>
+<h4><a class="header" href="#7269-ss2---single-shift-2" id="7269-ss2---single-shift-2">7.2.69. SS2 - SINGLE SHIFT 2</a></h4>
+<p>Representation: Table 1</p>
+<p>SS2 alters the meaning of the single bit combination following it. That bit
+combination must be one of those from columns 2 to 7 except 2/0 and 7/15
+(however, see 9). The meaning of the bit combination concerned is derived from
+an appropriately designated G2 graphic set.</p>
+<h4><a class="header" href="#7270-ss3---single-shift-3" id="7270-ss3---single-shift-3">7.2.70. SS3 - SINGLE SHIFT 3</a></h4>
+<p>Representation: Table 1</p>
+<p>SS3 alters the meaning of the single bit combination following it. That bit
+combination must be one of those from columns 2 to 7 except 2/0 and 7/15
+(however, see 9). The meaning of the bit combination concerned is derived from
+an appropriately designated G3 graphic set.</p>
+<h4><a class="header" href="#7271-ssa---start-of-selected-area" id="7271-ssa---start-of-selected-area">7.2.71. SSA - START OF SELECTED AREA</a></h4>
+<p>Representation: Table 1</p>
+<p>SSA indicates that the active position is the first of a string of character
+positions, the contents of which are eligible to be transmitted in the form of
+a data stream or transferred to an auxiliary input/output device. The end of
+this string is indicated by END OF SELECTED AREA (ESA). The string of
+characters actually transmitted or transferred depends on the setting of the
+GUARDED AREA TRANSFER MODE and on any guarded areas established by START OF
+PROTECTED AREA (SPA) or DEFINE AREA QUALIFICATION (DAQ). (See 6.3).</p>
+<h4><a class="header" href="#7272-ssu---select-size-unit" id="7272-ssu---select-size-unit">7.2.72. SSU - SELECT SIZE UNIT</a></h4>
+<p>Representation: Table 3 - selective parameter; no default value</p>
+<p>SSU is a format effector which establishes the unit in which the numeric
+parameters of the positioning format effectors are expressed when the
+POSITIONING UNIT MODE is set to SIZE. SSU also establishes the unit for GSS,
+SPI and TSS. The unit established remains effective until the occurrence of
+another SSU in the data stream. The parameter values are:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>1</td><td>INTERNATIONAL TYPOGRAPHIC STANDARD - (This unit is not yet standardized)</td></tr>
+<tr><td>2</td><td>DECIPOINT - 0,0353 mm (1/720 inch)</td></tr>
+<tr><td>3</td><td>DIDOT - 0,0376 mm</td></tr>
+<tr><td>4</td><td>MIL - 0,0254 mm (1/1000 inch)</td></tr>
+<tr><td>5</td><td>METRIC - 0,01 mm</td></tr>
+</tbody></table>
+<h4><a class="header" href="#7273-st---string-terminator" id="7273-st---string-terminator">7.2.73. ST - STRING TERMINATOR</a></h4>
+<p>Representation: Table 1</p>
+<p>ST is the closing delimiter of a string opened by APPLICATION PROGRAM COMMAND
+(APC), DEVICE CONTROL STRING (DCS), OPERATING SYSTEM COMMAND (OSC), or PRIVACY
+MESSAGE (PM).</p>
+<p>This control function may need to be represented by a graphic symbol.</p>
+<h4><a class="header" href="#7274-sts---set-transmit-state" id="7274-sts---set-transmit-state">7.2.74. STS - SET TRANSMIT STATE</a></h4>
+<p>Representation: Table 1</p>
+<p>STS causes the transmit state to be established in the receiving device. In
+this state the transmission of data from the device is possible.</p>
+<p>The actual initiation of transmission of data is performed by a data
+communication or input/output interface control procedure which is outside the
+scope of this Standard.</p>
+<p>The transmit state is established either by the operation of an appropriate
+button on a keyboard or by SET TRANSMIT STATE (STS) appearing in the received
+data stream.</p>
+<h4><a class="header" href="#7275-su---scroll-up" id="7275-su---scroll-up">7.2.75. SU - SCROLL UP</a></h4>
+<p>Representation: Table 2 - one numeric parameter, default value: 1</p>
+<p>The displayed portion of a multiple-page buffer is moved by n lines such that
+the displayed data appear to move up.</p>
+<p>The effect of this control function on the active position is not defined by
+this Standard.</p>
+<h4><a class="header" href="#7276-tbc---tabulation-clear" id="7276-tbc---tabulation-clear">7.2.76. TBC - TABULATION CLEAR</a></h4>
+<p>Representation: Table 2 - selective parameter, default value: 0</p>
+<p>TBC is a format effector which causes one or more tabulation stops to be
+cleared, depending on the parameter value:</p>
+<table><thead><tr><th>value</th><th>meaning</th></tr></thead><tbody>
+<tr><td>0</td><td>clear the horizontal tabulation stop at the active position</td></tr>
+<tr><td>1</td><td>clear the vertical tabulation stop at the active line</td></tr>
+<tr><td>2</td><td>clear all horizontal tabulation stops at the active line</td></tr>
+<tr><td>3</td><td>clear all horizontal tabulation stops</td></tr>
+<tr><td>4</td><td>clear all vertical tabulation stops</td></tr>
+</tbody></table>
+<p>In the case of parameter values 0 or 2, when horizontal tabulation stops are
+cleared, the number of lines affected depends on the setting of the TABULATION
+STOP MODE.</p>
+<h4><a class="header" href="#7277-tss---thin-space-specification" id="7277-tss---thin-space-specification">7.2.77. TSS - THIN SPACE SPECIFICATION</a></h4>
+<p>Representation: Table 3 - one numeric parameter; no default value</p>
+<p>TSS is a format effector which establishes the width of thin spaces following
+in the data stream, until the next occurrence of TSS (see Annex C).</p>
+<p><code>n</code> specifies the width in units as established by SELECT SIZE UNIT (SSU).</p>
+<h4><a class="header" href="#7278-vpa---vertical-position-absolute" id="7278-vpa---vertical-position-absolute">7.2.78. VPA - VERTICAL POSITION ABSOLUTE</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>VPA is a format effector which causes the active position to be moved to the
+corresponding horizontal position at vertical position n. The unit in which n
+is expressed depends on the setting of the POSITIONING UNIT MODE.</p>
+<h4><a class="header" href="#7279-vpr---vertical-position-relative" id="7279-vpr---vertical-position-relative">7.2.79. VPR - VERTICAL POSITION RELATIVE</a></h4>
+<p>Representation: Table 2 - one numeric parameter; default value: 1</p>
+<p>VPR is a format effector which causes the active position to be moved to the
+corresponding horizontal position at the n-th following vertical position. The
+unit in which <code>n</code> is expressed depends on the setting of the POSITIONING UNIT
+MODE.</p>
+<h4><a class="header" href="#7280-vts---vertical-tabulation-set" id="7280-vts---vertical-tabulation-set">7.2.80. VTS - VERTICAL TABULATION SET</a></h4>
+<p>Representation: Table 1</p>
+<p>VTS is a format effector which causes a vertical tabulation stop to be set at
+the active line.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="06-modes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="08-relations.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="06-modes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="08-relations.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

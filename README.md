@@ -13,3 +13,14 @@ I (@wez) took it upon myself to OCR and transcribe this document into markdown
 to open things up a bit.  I need this documentation as part of my effort in
 building terminal emulation software.
 
+## Regenerating the built book
+
+This book uses [mdBook](https://github.com/rust-lang/mdBook) to transform markdown
+into a readable form.  To regenerate it:
+
+```
+$ cargo install mdbook
+$ mdbook build --open
+```
+
+Then add the modified files into a commit and submit a pull request!
