@@ -1,5 +1,7 @@
 # ECMA-48 in searchable, copy-n-pastable form
 
+* [Browse the book online here](https://wezfurlong.org/ecma48/)
+
 [ECMA-48](http://www.ecma-international.org/publications/standards/Ecma-048.htm) is
 the freely available standard that defines *ANSI Escape Sequences*.  The text
 in ECMA-48 is identical to the corresponding ANSI standard but is made freely
